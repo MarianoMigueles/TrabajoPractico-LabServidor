@@ -1,0 +1,6 @@
+@Ar.edu.ISTEA.TrabajoPractico_LabServidor_HostAddress = http://localhost:5114
+
+GET {{Ar.edu.ISTEA.TrabajoPractico_LabServidor_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
