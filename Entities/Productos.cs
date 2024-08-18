@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Entities
 {
-    internal class Productos
+    public class Productos
     {
         [Key]
         public int IdProducto { get; set; }
