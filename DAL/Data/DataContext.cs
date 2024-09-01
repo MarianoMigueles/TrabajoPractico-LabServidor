@@ -3,10 +3,8 @@ using Entities;
 
 namespace Ar.edu.ISTEA.TrabajoPractico_LabServidor.Dal
 {
-    public class DataContext : DbContext
+    public class DataContext(DbContextOptions<DataContext> options) : DbContext(options)
     {
-        public DataContext(DbContextOptions<DataContext> options) : base(options) { }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
