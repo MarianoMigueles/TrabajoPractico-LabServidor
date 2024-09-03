@@ -1,6 +1,8 @@
-﻿namespace Ar.edu.ISTEA.TrabajoPractico_LabServidor.Services
+﻿using Ar.edu.ISTEA.TrabajoPractico_LabServidor.Services.Interface;
+
+namespace Ar.edu.ISTEA.TrabajoPractico_LabServidor.Services
 {
-    public class ProductoService
+    public class ProductoService : IProductoService
     {
     }
 }
