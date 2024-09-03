@@ -9,6 +9,6 @@ namespace DAL.Repositorios.Interfaces
 {
     public interface IEmpleadosRepository : IRepository<Empleados>
     {
-        Task<List<Pedidos>> ObtenerTodosLosPedidos();
+        Task<List<Pedidos>> ObtenerTodosLosPedidos(); //retorna todos los pedidos dentro de cada una de las comandas
     }
 }

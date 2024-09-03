@@ -15,7 +15,6 @@ namespace Entities
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int IdEmpleados {  get; set; }
 
-
         public string Nombre { get; set; }
         public string Usuario { get; set; }
         public string Passsword { get; set; }
