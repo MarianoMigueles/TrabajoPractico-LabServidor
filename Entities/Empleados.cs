@@ -15,17 +15,13 @@ namespace Entities
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int IdEmpleados {  get; set; }
 
-        [ForeignKey(nameof(IdSectorNavigation))]
-        public int IdSector { get; set; }
 
-        [ForeignKey(nameof(IdRolNavigation))]
-        public int IdRol { get; set; }
         public string Nombre { get; set; }
         public string Usuario { get; set; }
         public string Passsword { get; set; }
 
-        public Sectores IdSectorNavigation { get; set; }
-        public Roles IdRolNavigation { get; set; }
+        public Sectores Sector { get; set; }
+        public Roles Rol { get; set; }
 
     }
 }

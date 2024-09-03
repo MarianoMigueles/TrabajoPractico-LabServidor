@@ -14,5 +14,30 @@ namespace DAL.Repositorios
         public PedidosRepository(DataContext context) : base(context)
         {
         }
+
+        public Task<bool> CambiarEstado(string estado)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<List<Pedidos>> FueraDeTiempo()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<Productos> MasVendido()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<Productos> MenosVendido()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<string> ObtenerEstado()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

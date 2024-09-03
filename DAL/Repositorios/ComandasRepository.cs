@@ -13,6 +13,12 @@ namespace DAL.Repositorios
     {
         public ComandasRepository(DataContext context) : base(context)
         {
+
+        }
+
+        public Task<List<Pedidos>> ObtenerPedidosPendientes()
+        {
+            throw new NotImplementedException();
         }
     }
 }

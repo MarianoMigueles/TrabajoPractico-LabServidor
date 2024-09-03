@@ -9,5 +9,6 @@ namespace DAL.Repositorios.Interfaces
 {
     public interface IProductosRepository : IRepository<Productos>
     {
+
     }
 }

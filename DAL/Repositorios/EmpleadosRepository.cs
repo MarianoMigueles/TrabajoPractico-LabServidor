@@ -14,5 +14,10 @@ namespace DAL.Repositorios
         public EmpleadosRepository(DataContext context) : base(context)
         {
         }
+
+        public Task<List<Pedidos>> ObtenerTodosLosPedidos()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

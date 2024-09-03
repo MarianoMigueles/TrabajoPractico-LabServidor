@@ -8,12 +8,11 @@ using System.Threading.Tasks;
 
 namespace Entities
 {
-    public class Sectores
+    public enum Sectores
     {
-        [Key]
-        [Required]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int IdSector { get; set; }
-        public string Descripcion { get; set; }
+        BarraDeTragosYVinos,
+        BarraDeChoperas,
+        Cocina,
+        CandyBar
     }
 }

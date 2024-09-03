@@ -14,13 +14,9 @@ namespace Entities
         [Required]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int IdProducto { get; set; }
-
-        [ForeignKey(nameof(IdSectorNavigation))]
-        public int IdSector { get; set; }
         public string Descripcion { get; set; }
         public int Stock { get; set; }
         public int Precio { get; set; }
-
-        public Sectores IdSectorNavigation { get; set; }
+        public Sectores Sector { get; set; }
     }
 }

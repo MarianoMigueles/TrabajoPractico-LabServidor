@@ -21,15 +21,13 @@ namespace Entities
         [ForeignKey(nameof(IdProductoNavigation))]
         public int IdProducto { get; set; }
 
-        [ForeignKey(nameof(IdEstadoPedidoNavigation))]
-        public int IdEstado { get; set; }
         public int Cantidad { get; set; }
         public DateTime FechaCreacion { get; set; }
         public DateTime FechaFinalizacion { get; set; }
 
         public Comandas IdComandaNavigation { get; set; }
         public List<Productos> IdProductoNavigation { get; set; }
-        public EstadoPedido IdEstadoPedidoNavigation { get; set; }
+        public EstadoPedido EstadoPedido { get; set; }
 
     }
 }

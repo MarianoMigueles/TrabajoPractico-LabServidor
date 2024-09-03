@@ -14,5 +14,7 @@ namespace DAL.Repositorios
         public ProductosRepository(DataContext context) : base(context)
         {
         }
+
+
     }
 }

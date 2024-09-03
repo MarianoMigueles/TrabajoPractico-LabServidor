@@ -14,11 +14,7 @@ namespace Entities
         [Required]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int IdMesa {  get; set; }
-
-        [ForeignKey(nameof(IdEstadoNesaNavigation))]
-        public int IdEstado { get; set; }
         public string Nombre { get; set; }
-
-        public EstadoMesa IdEstadoNesaNavigation { get; set; }
+        public EstadoMesa EstadoMesa { get; set; }
     }
 }

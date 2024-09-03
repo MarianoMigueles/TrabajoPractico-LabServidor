@@ -14,5 +14,25 @@ namespace DAL.Repositorios
         public MesaRepository(DataContext context) : base(context)
         {
         }
+
+        public Task<bool> CambiarEstado(string estado)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> CerrarMesa(int idMesa)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<Pedidos> IdentificarPedido(int codigo)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<Pedidos> ObtenerPedidoEnPreparacion(int codigo)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

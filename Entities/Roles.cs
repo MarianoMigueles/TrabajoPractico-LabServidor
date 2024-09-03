@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace Entities
 {
-    public class Roles
+    public enum Roles
     {
-        [Key]
-        [Required]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int IdRol {  get; set; }
-        public string Descripcion { get; set; }
+        Bartender,
+        Cerveceros,
+        Cocineros,
+        Mozos,
+        Socios
     }
 }

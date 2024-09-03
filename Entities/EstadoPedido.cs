@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace Entities
 {
-    public class EstadoPedido
+    public enum EstadoPedido
     {
-        [Key]
-        [Required]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int IdEstado {  get; set; }
-        public string Descripcion { get; set; }
+        Pendiente,
+        EnPreparacion,
+        ListoParaServir,
+        Entregado,
+        EntregadoFueraDeTiempo
     }
 }
