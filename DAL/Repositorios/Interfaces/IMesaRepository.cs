@@ -9,5 +9,9 @@ namespace DAL.Repositorios.Interfaces
 {
     public interface IMesaRepository : IRepository<Mesas>
     {
+        Task<Pedidos> ObtenerPedidoEnPreparacion(int codigo);
+        Task<Pedidos> IdentificarPedido(int codigo);
+        Task<bool> CambiarEstado(string estado);
+        Task<bool> CerrarMesa(int idMesa);
     }
 }

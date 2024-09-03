@@ -9,5 +9,10 @@ namespace DAL.Repositorios.Interfaces
 {
     public interface IPedidosRepository : IRepository<Pedidos>
     {
+        Task<bool> CambiarEstado(string estado);
+        Task<string> ObtenerEstado();
+        Task<Productos> MasVendido();
+        Task<Productos> MenosVendido();
+        Task<List<Pedidos>> FueraDeTiempo();
     }
 }

@@ -9,5 +9,6 @@ namespace DAL.Repositorios.Interfaces
 {
     public interface IEmpleadosRepository : IRepository<Empleados>
     {
+        Task<List<Pedidos>> ObtenerTodosLosPedidos();
     }
 }
