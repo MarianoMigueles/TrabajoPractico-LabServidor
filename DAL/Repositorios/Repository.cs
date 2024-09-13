@@ -11,7 +11,7 @@ namespace DAL.Repositorios
 {
     public class Repository<T> : IRepository<T> where T : class
     {
-        private readonly DataContext _context;
+        protected readonly DataContext _context;
         public Repository(DataContext context)
         {
             _context = context;

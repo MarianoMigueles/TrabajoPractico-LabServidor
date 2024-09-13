@@ -27,7 +27,30 @@ namespace Entities
 
         public Comandas IdComandaNavigation { get; set; }
         public List<Productos> IdProductoNavigation { get; set; }
-        public EstadoPedido EstadoPedido { get; set; }
+
+        private EstadoPedido _estadoPedido;
+        public EstadoPedido EstadoPedido
+        {
+            get => _estadoPedido;
+            set
+            {
+                if (_estadoPedido == EstadoPedido.Entregado)
+                {
+                    throw new Exception("No se puede cambiar el estado, ya que el pedido ya fue entregado");
+                }
+                _estadoPedido = value; 
+            }
+        }
+
+        public void CambiarEstado(EstadoPedido estado)
+        {
+            if(this.EstadoPedido == EstadoPedido.ListoParaServir)
+            {
+                this.FechaFinalizacion = DateTime.Now;
+            }
+
+            this.EstadoPedido = estado;
+        } 
 
     }
 }

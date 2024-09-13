@@ -15,8 +15,25 @@ namespace Entities
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int IdProducto { get; set; }
         public string Descripcion { get; set; }
-        public int Stock { get; set; }
+        private int _stock;
+        public int Stock
+        {   get => _stock;
+            set
+            {
+                if(value < 0)
+                {
+                    throw new Exception("El stock esta en 0");
+                } 
+
+                _stock = value;
+            }
+        }
         public int Precio { get; set; }
         public Sectores Sector { get; set; }
+
+        public void ReducirStock(int? cantidad = null)
+        {
+            this.Stock -= cantidad ?? 1;
+        }
     }
 }

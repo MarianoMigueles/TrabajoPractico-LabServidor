@@ -1,6 +1,7 @@
 ﻿using Ar.edu.ISTEA.TrabajoPractico_LabServidor.Dal;
 using DAL.Repositorios.Interfaces;
 using Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,9 +17,10 @@ namespace DAL.Repositorios
 
         }
 
-        public Task<List<Pedidos>> ObtenerPedidosPendientes()
+        public async Task<List<Pedidos>> ObtenerPedidosPendientes()
         {
-            throw new NotImplementedException();
+            var result = await _context.Pedidos.Where(x => x.EstadoPedido == EstadoPedido.Pendiente).ToListAsync();
+            return result;
         }
     }
 }

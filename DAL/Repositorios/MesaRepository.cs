@@ -1,6 +1,7 @@
 ﻿using Ar.edu.ISTEA.TrabajoPractico_LabServidor.Dal;
 using DAL.Repositorios.Interfaces;
 using Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,9 +16,11 @@ namespace DAL.Repositorios
         {
         }
 
-        public Task<bool> CambiarEstado(string estado)
+        public async Task<EstadoMesa> CambiarEstado(int idMesa, EstadoMesa estadoMesa)
         {
-            throw new NotImplementedException();
+            Mesas mesa = await _context.Mesas.Where(x => x.IdMesa == idMesa).FirstOrDefaultAsync() ?? throw new Exception("La mesa no fue encontrada");
+            mesa.EstadoMesa = estadoMesa;
+            return mesa.EstadoMesa;
         }
 
         public Task<bool> CerrarMesa(int idMesa)

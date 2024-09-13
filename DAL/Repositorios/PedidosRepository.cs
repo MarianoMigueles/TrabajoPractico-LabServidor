@@ -1,6 +1,8 @@
 ﻿using Ar.edu.ISTEA.TrabajoPractico_LabServidor.Dal;
 using DAL.Repositorios.Interfaces;
 using Entities;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,14 +17,15 @@ namespace DAL.Repositorios
         {
         }
 
-        public Task<bool> CambiarEstado(string estado)
+        public void CambiarEstado(Pedidos pedidos, EstadoPedido estado)
         {
-            throw new NotImplementedException();
+            pedidos.CambiarEstado(estado);
         }
 
         public Task<List<Pedidos>> FueraDeTiempo()
         {
-            throw new NotImplementedException();
+            var result = _context.Pedidos.Where(x => x.EstadoPedido == EstadoPedido.EntregadoFueraDeTiempo).ToListAsync();
+            return result;
         }
 
         public Task<Productos> MasVendido()
@@ -31,11 +34,6 @@ namespace DAL.Repositorios
         }
 
         public Task<Productos> MenosVendido()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<string> ObtenerEstado()
         {
             throw new NotImplementedException();
         }

@@ -11,7 +11,7 @@ namespace DAL.Repositorios.Interfaces
     {
         Task<Pedidos> ObtenerPedidoEnPreparacion(int codigo);
         Task<Pedidos> IdentificarPedido(int codigo);
-        Task<bool> CambiarEstado(string estado);
+        Task<EstadoMesa> CambiarEstado(int idMesa, EstadoMesa estadoMesa);
         Task<bool> CerrarMesa(int idMesa);
     }
 }
