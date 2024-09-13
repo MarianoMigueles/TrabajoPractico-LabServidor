@@ -10,8 +10,11 @@ namespace DAL.Repositorios.Interfaces
     public interface IPedidosRepository : IRepository<Pedidos>
     {
         void CambiarEstado(Pedidos pedidos, EstadoPedido estado);
-        Task<Productos> MasVendido();
-        Task<Productos> MenosVendido();
         Task<List<Pedidos>> FueraDeTiempo();
+        Task<List<Pedidos>> ObtenerTodosLosPedidos(); //retorna todos los pedidos dentro de cada una de las comandas
+        Task<List<Pedidos>> ObtenerPedidosPendientes();
+
+        Task<Pedidos> ObtenerPedidoEnPreparacion(int codigo);
+        Task<Pedidos> IdentificarPedido(int codigo);
     }
 }

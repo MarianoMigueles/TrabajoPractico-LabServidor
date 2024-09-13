@@ -15,9 +15,6 @@ namespace DAL.Repositorios
         {
         }
 
-        public Task<List<Pedidos>> ObtenerTodosLosPedidos()
-        {
-            throw new NotImplementedException();
-        }
+
     }
 }

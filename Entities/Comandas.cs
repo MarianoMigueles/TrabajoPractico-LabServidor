@@ -15,5 +15,7 @@ namespace Entities
         public string NombreCliente { get; set; }
 
         public Mesas IdMesaNavigation { get; set; }
+
+        public List<Pedidos> Pedidos { get; set; }
     }
 }

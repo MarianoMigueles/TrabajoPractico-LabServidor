@@ -16,11 +16,11 @@ namespace DAL.Repositorios
         {
         }
 
-        public async Task<EstadoMesa> CambiarEstado(int idMesa, EstadoMesa estadoMesa)
+        public async Task<bool> CambiarEstado(int idMesa, EstadoMesa estadoMesa)
         {
             Mesas mesa = await _context.Mesas.Where(x => x.IdMesa == idMesa).FirstOrDefaultAsync() ?? throw new Exception("La mesa no fue encontrada");
             mesa.EstadoMesa = estadoMesa;
-            return mesa.EstadoMesa;
+            return true;
         }
 
         public Task<bool> CerrarMesa(int idMesa)
@@ -28,14 +28,5 @@ namespace DAL.Repositorios
             throw new NotImplementedException();
         }
 
-        public Task<Pedidos> IdentificarPedido(int codigo)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<Pedidos> ObtenerPedidoEnPreparacion(int codigo)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

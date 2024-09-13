@@ -17,10 +17,5 @@ namespace DAL.Repositorios
 
         }
 
-        public async Task<List<Pedidos>> ObtenerPedidosPendientes()
-        {
-            var result = await _context.Pedidos.Where(x => x.EstadoPedido == EstadoPedido.Pendiente).ToListAsync();
-            return result;
-        }
     }
 }

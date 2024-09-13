@@ -26,7 +26,7 @@ namespace Entities
         public DateTime FechaFinalizacion { get; set; }
 
         public Comandas IdComandaNavigation { get; set; }
-        public List<Productos> IdProductoNavigation { get; set; }
+        public Productos IdProductoNavigation { get; set; }
 
         private EstadoPedido _estadoPedido;
         public EstadoPedido EstadoPedido

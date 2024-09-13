@@ -9,6 +9,9 @@ namespace DAL.Repositorios.Interfaces
 {
     public interface IProductosRepository : IRepository<Productos>
     {
+        Task<Productos> MasVendido();
+        Task<Productos> MenosVendido();
+
 
     }
 }

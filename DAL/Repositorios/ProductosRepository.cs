@@ -15,6 +15,14 @@ namespace DAL.Repositorios
         {
         }
 
+        public Task<Productos> MasVendido()
+        {
+            throw new NotImplementedException();
+        }
 
+        public Task<Productos> MenosVendido()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
