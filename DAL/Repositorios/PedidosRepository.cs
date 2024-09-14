@@ -28,25 +28,10 @@ namespace DAL.Repositorios
             return result;
         }
 
-        public Task<Pedidos> IdentificarPedido(int codigo)
+        public async Task<Pedidos> ObtenerPedidoEnPreparacion(int id)
         {
             throw new NotImplementedException();
         }
 
-        public Task<Pedidos> ObtenerPedidoEnPreparacion(int codigo)
-        {
-            throw new NotImplementedException();
-        }
-
-        public async Task<List<Pedidos>> ObtenerPedidosPendientes()
-        {
-            var pedido = await _context.Pedidos.Where(x => x.EstadoPedido == EstadoPedido.Pendiente).ToListAsync();
-            return pedido;
-        }
-
-        public Task<List<Pedidos>> ObtenerTodosLosPedidos()
-        {
-            throw new NotImplementedException();
-        }
     }
 }
