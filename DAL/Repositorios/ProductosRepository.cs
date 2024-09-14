@@ -1,6 +1,7 @@
 ﻿using Ar.edu.ISTEA.TrabajoPractico_LabServidor.Dal;
 using DAL.Repositorios.Interfaces;
 using Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,14 +16,34 @@ namespace DAL.Repositorios
         {
         }
 
-        public Task<Productos> MasVendido()
+        public async Task<Productos> MasVendido()
         {
-            throw new NotImplementedException();
+            var result = await _context.Pedidos
+                                    .GroupBy(p => p.IdProducto)
+                                    .Select(group => new
+                                    {
+                                        IdProducto = group.Key,
+                                        TotalCantidad = group.Sum(p => p.Cantidad)
+                                    })
+                                    .OrderByDescending(p => p.TotalCantidad)
+                                    .FirstOrDefaultAsync();
+
+            return await _context.Productos.FindAsync(result.IdProducto) ?? null;
         }
 
-        public Task<Productos> MenosVendido()
+        public async Task<Productos> MenosVendido()
         {
-            throw new NotImplementedException();
+            var result = await _context.Pedidos
+                        .GroupBy(p => p.IdProducto)
+                        .Select(group => new
+                        {
+                            IdProducto = group.Key,
+                            TotalCantidad = group.Sum(p => p.Cantidad)
+                        })
+                        .OrderBy(p => p.TotalCantidad)
+                        .FirstOrDefaultAsync();
+
+            return await _context.Productos.FindAsync(result.IdProducto) ?? null;
         }
     }
 }
