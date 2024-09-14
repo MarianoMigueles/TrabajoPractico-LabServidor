@@ -23,9 +23,11 @@ namespace DAL.Repositorios
             return true;
         }
 
-        public Task<bool> CerrarMesa(int idMesa)
+        public async Task<bool> CerrarMesa(int idMesa)
         {
-            throw new NotImplementedException();
+            var mesa = await _context.Mesas.Where(x => x.IdMesa == idMesa).FirstOrDefaultAsync() ?? throw new Exception("La mesa no fue encontrada");
+            mesa.EstadoMesa = EstadoMesa.Cerrada;
+            return true;
         }
 
     }

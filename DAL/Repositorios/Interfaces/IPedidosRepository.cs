@@ -14,7 +14,6 @@ namespace DAL.Repositorios.Interfaces
         Task<List<Pedidos>> ObtenerTodosLosPedidos(); //retorna todos los pedidos dentro de cada una de las comandas
         Task<List<Pedidos>> ObtenerPedidosPendientes();
 
-        Task<Pedidos> ObtenerPedidoEnPreparacion(int codigo);
-        Task<Pedidos> IdentificarPedido(int codigo);
+        Task<Pedidos> ObtenerPedidoEnPreparacion(int id);
     }
 }
