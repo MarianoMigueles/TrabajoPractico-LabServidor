@@ -28,10 +28,27 @@ namespace DAL.Repositorios
             return result;
         }
 
+        public async Task<Pedidos> IdentificarPedido(int id)
+        {
+            var pedido = await _context.Pedidos.Where(x => x.IdPedidos == id).FirstOrDefaultAsync() ?? throw new Exception("El pedido no fue encontrado");
+            return pedido;
+        }
+
         public async Task<Pedidos> ObtenerPedidoEnPreparacion(int id)
         {
             throw new NotImplementedException();
         }
 
+        public async Task<List<Pedidos>> ObtenerPedidosPendientes()
+        {
+            var pedido = await _context.Pedidos.Where(x => x.EstadoPedido == EstadoPedido.Pendiente).ToListAsync();
+            return pedido;
+        }
+
+        public async Task<List<Pedidos>> ObtenerTodosLosPedidos()
+        {
+            var pedidos = await _context.Pedidos.ToListAsync();
+            return pedidos;
+        }
     }
 }
