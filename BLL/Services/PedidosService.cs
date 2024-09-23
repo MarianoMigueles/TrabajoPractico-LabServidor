@@ -16,7 +16,7 @@ namespace BLL.Services
         public async Task<PedidosDTO> CambiarEstado(int idPedido, EEstadoPedido estado)
         {
             var pedido = await _unitOfWork.PedidosRepository.GetById(idPedido);
-            _unitOfWork.PedidosRepository.CambiarEstado(pedido, estado); // no se si la falta de asincronismo puede ocacionar un problema
+            _unitOfWork.PedidosRepository.CambiarEstado(pedido, estado); // no se si la falta de asincronismo puede ocasionar un problema
             return _mapper.Map<PedidosDTO>(pedido);
         }
 
