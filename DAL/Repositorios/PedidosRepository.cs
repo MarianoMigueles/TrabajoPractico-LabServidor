@@ -1,6 +1,7 @@
 ﻿using Ar.edu.ISTEA.TrabajoPractico_LabServidor.Dal;
 using DAL.Repositorios.Interfaces;
 using Entities;
+using Entities.Enums;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
 using System;
@@ -17,21 +18,15 @@ namespace DAL.Repositorios
         {
         }
 
-        public void CambiarEstado(Pedidos pedidos, EstadoPedido estado)
+        public void CambiarEstado(Pedidos pedidos, EEstadoPedido estado)
         {
             pedidos.CambiarEstado(estado);
         }
 
         public Task<List<Pedidos>> FueraDeTiempo()
         {
-            var result = _context.Pedidos.Where(x => x.EstadoPedido == EstadoPedido.EntregadoFueraDeTiempo).ToListAsync();
+            var result = _context.Pedidos.Where(x => x.EstadoPedido == EEstadoPedido.EntregadoFueraDeTiempo).ToListAsync();
             return result;
-        }
-
-        public async Task<Pedidos> IdentificarPedido(int id)
-        {
-            var pedido = await _context.Pedidos.Where(x => x.IdPedidos == id).FirstOrDefaultAsync() ?? throw new Exception("El pedido no fue encontrado");
-            return pedido;
         }
 
         public async Task<Pedidos> ObtenerPedidoEnPreparacion(int id)
@@ -41,14 +36,9 @@ namespace DAL.Repositorios
 
         public async Task<List<Pedidos>> ObtenerPedidosPendientes()
         {
-            var pedido = await _context.Pedidos.Where(x => x.EstadoPedido == EstadoPedido.Pendiente).ToListAsync();
+            var pedido = await _context.Pedidos.Where(x => x.EstadoPedido == EEstadoPedido.Pendiente).ToListAsync();
             return pedido;
         }
 
-        public async Task<List<Pedidos>> ObtenerTodosLosPedidos()
-        {
-            var pedidos = await _context.Pedidos.ToListAsync();
-            return pedidos;
-        }
     }
 }

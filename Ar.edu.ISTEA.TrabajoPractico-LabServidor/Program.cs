@@ -1,6 +1,6 @@
 using Ar.edu.ISTEA.TrabajoPractico_LabServidor.Dal;
-using Ar.edu.ISTEA.TrabajoPractico_LabServidor.Services;
-using Ar.edu.ISTEA.TrabajoPractico_LabServidor.Services.Interface;
+using BLL.Services;
+using BLL.Services.Interface;
 using DAL.Repositorios;
 using DAL.Repositorios.Interfaces;
 using DAL.UnitOfWork;
@@ -22,11 +22,11 @@ builder.Services.AddScoped<IMesaRepository, MesaRepository>();
 builder.Services.AddScoped<IPedidosRepository, PedidosRepository>();
 builder.Services.AddScoped<IProductosRepository, ProductosRepository>();
 
-builder.Services.AddScoped<IComandaService, ComandaService>(); 
-builder.Services.AddScoped<IEmpleadoService, EmpleadoService>();
+builder.Services.AddScoped<IComandasService, ComandasService>(); 
+builder.Services.AddScoped<IEmpleadosService, EmpleadosService>();
 builder.Services.AddScoped<IMesaService, MesaService>();
-builder.Services.AddScoped<IPedidoService, PedidoService>();
-builder.Services.AddScoped<IProductoService, ProductoService>();
+builder.Services.AddScoped<IPedidosService, PedidosService>();
+builder.Services.AddScoped<IProductosService, ProductosService>();
 
 //UNIT OF WORK
 builder.Services.AddScoped<IUnitOfWork,  UnitOfWork>();

@@ -1,19 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Entities
 {
-    public enum EstadoPedido
+    public class EstadoPedido
     {
-        Pendiente,
-        EnPreparacion,
-        ListoParaServir,
-        Entregado,
-        EntregadoFueraDeTiempo
+        [Key]
+        public int IdEstado {  get; set; }
+        public string Descripcion { get; set; }
     }
 }

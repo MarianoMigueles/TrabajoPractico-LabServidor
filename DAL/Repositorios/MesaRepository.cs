@@ -1,6 +1,7 @@
 ﻿using Ar.edu.ISTEA.TrabajoPractico_LabServidor.Dal;
 using DAL.Repositorios.Interfaces;
 using Entities;
+using Entities.Enums;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -16,18 +17,18 @@ namespace DAL.Repositorios
         {
         }
 
-        public async Task<bool> CambiarEstado(int idMesa, EstadoMesa estadoMesa)
+        public async Task<Mesas> CambiarEstado(int idMesa, EEstadoMesa estadoMesa)
         {
             Mesas mesa = await _context.Mesas.Where(x => x.IdMesa == idMesa).FirstOrDefaultAsync() ?? throw new Exception("La mesa no fue encontrada");
             mesa.EstadoMesa = estadoMesa;
-            return true;
+            return mesa;
         }
 
-        public async Task<bool> CerrarMesa(int idMesa)
+        public async Task<Mesas> CerrarMesa(int idMesa)
         {
             var mesa = await _context.Mesas.Where(x => x.IdMesa == idMesa).FirstOrDefaultAsync() ?? throw new Exception("La mesa no fue encontrada");
-            mesa.EstadoMesa = EstadoMesa.Cerrada;
-            return true;
+            mesa.EstadoMesa = EEstadoMesa.Cerrada;
+            return mesa;
         }
 
     }

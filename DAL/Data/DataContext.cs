@@ -15,6 +15,9 @@ namespace Ar.edu.ISTEA.TrabajoPractico_LabServidor.Dal
         public virtual DbSet<Mesas> Mesas { get; set; }
         public virtual DbSet<Pedidos> Pedidos { get; set; }
         public virtual DbSet<Productos> Productos { get; set; }
+        public virtual DbSet<OperacionesEmpleados> Operaciones { get; set; }
+        public virtual DbSet<LogInEmpleado> LogIns { get; set; }
+
 
     }
 }
