@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Entities.Enums;
 
 namespace Entities
 {
@@ -15,5 +16,14 @@ namespace Entities
         public string Descripcion { get; set; }
         public int Stock { get; set; }
         public int Precio { get; set; }
+<<<<<<< Updated upstream
+=======
+        public ESectores Sector { get; set; }
+
+        public void ReducirStock(int? cantidad = null)
+        {
+            this.Stock -= cantidad ?? 1;
+        }
+>>>>>>> Stashed changes
     }
 }

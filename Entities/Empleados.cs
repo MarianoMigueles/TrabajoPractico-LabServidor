@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Entities.Enums;
 
 namespace Entities
 {
@@ -15,5 +16,12 @@ namespace Entities
         public string Usuario { get; set; }
         public string Passsword { get; set; }
 
+<<<<<<< Updated upstream
+=======
+        public ESectores Sector { get; set; }
+        public ERoles Rol { get; set; }
+        public EEstadoEmpleado Estado { get; set; }
+
+>>>>>>> Stashed changes
     }
 }
