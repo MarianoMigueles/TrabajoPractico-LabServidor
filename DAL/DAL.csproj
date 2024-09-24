@@ -7,7 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Data\DataSeed\" />
+    <Compile Remove="Data\DataSeed\**" />
+    <EmbeddedResource Remove="Data\DataSeed\**" />
+    <None Remove="Data\DataSeed\**" />
   </ItemGroup>
 
   <ItemGroup>

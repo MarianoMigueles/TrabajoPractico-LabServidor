@@ -20,6 +20,7 @@ namespace BLL.Automapper
         {
             CreateMap<Comandas, ComandaDTO>().ReverseMap();
             CreateMap<Empleados, EmpleadoDTO>().ReverseMap();
+            CreateMap<Empleados, EmpleadoLogInDTO>().ReverseMap();
             CreateMap<Mesas, MesaDTO>().ReverseMap();
             CreateMap<Pedidos, PedidosDTO>().ReverseMap();
             CreateMap<Productos, ProductoDTO>().ReverseMap();

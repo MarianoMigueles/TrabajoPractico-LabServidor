@@ -8,15 +8,9 @@ using System.Threading.Tasks;
 
 namespace BLL.Services
 {
-    public abstract class AbstractServices
+    public abstract class AbstractServices(IMapper mapper, IUnitOfWork unitOfWork)
     {
-        protected readonly IUnitOfWork _unitOfWork;
-        protected readonly IMapper _mapper;
-        public AbstractServices(IMapper mapper, IUnitOfWork unitOfWork)
-        {
-            _unitOfWork = unitOfWork;
-            _mapper = mapper;
-        }
-
+        protected readonly IUnitOfWork _unitOfWork = unitOfWork;
+        protected readonly IMapper _mapper = mapper;
     }
 }

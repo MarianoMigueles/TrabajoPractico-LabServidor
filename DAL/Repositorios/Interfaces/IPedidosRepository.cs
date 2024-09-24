@@ -11,8 +11,9 @@ namespace DAL.Repositorios.Interfaces
     public interface IPedidosRepository : IRepository<Pedidos>
     {
         void CambiarEstado(Pedidos pedidos, EEstadoPedido estado);
-        Task<List<Pedidos>> FueraDeTiempo();
+        Task<List<Pedidos>> ObtenerPedidoFueraDeTiempo();
+        Task<DateTime> ObtenerTiempoEstimadoPedidoDePreparacion(int idPedido);
+        Task<Pedidos> PonerPedidoEnPreparacion(int idPedido, DateTime tiempoEstimado);
         Task<List<Pedidos>> ObtenerPedidosPendientes();
-        Task<Pedidos> ObtenerPedidoEnPreparacion(int id);
     }
 }

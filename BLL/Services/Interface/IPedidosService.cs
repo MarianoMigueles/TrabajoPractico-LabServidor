@@ -1,4 +1,5 @@
 ﻿using BLL.DTO.Pedidos;
+using Entities;
 using Entities.Enums;
 using System;
 using System.Collections.Generic;
@@ -11,8 +12,9 @@ namespace BLL.Services.Interface
     public interface IPedidosService
     {
         Task<PedidosDTO> CambiarEstado(int idPedido, EEstadoPedido estado);
-        Task<List<PedidosDTO>> FueraDeTiempo();
+        Task<List<PedidosDTO>> ObtenerPedidosFueraDeTiempo();
+        Task<DateTime> ObtenerTiempoEstimadoPedidoDePreparacion(int idPedido);
+        Task<PedidosDTO> PonerPedidoEnPreparacion(int idPedido, DateTime tiempoEstimado);
         Task<List<PedidosDTO>> ObtenerPedidosPendientes();
-        Task<PedidosDTO> ObtenerPedidoEnPreparacion(int id);
     }
 }

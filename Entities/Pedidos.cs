@@ -19,6 +19,7 @@ namespace Entities
         public int Cantidad { get; set; }
         public DateTime FechaCreacion { get; set; }
         public DateTime FechaFinalizacion { get; set; }
+        public DateTime TiempoEstimadoFinalizacion { get; set; }
 
         public Comandas IdComandaNavigation { get; set; }
         public Productos IdProductoNavigation { get; set; }
@@ -42,10 +43,29 @@ namespace Entities
             if(this.EstadoPedido == EEstadoPedido.ListoParaServir)
             {
                 this.FechaFinalizacion = DateTime.Now;
+
+                if(this.FechaFinalizacion > this.TiempoEstimadoFinalizacion)
+                {
+                    this.EstadoPedido = EEstadoPedido.EntregadoFueraDeTiempo;
+                }
             }
 
             this.EstadoPedido = estado;
         } 
+
+        public void CambiarEstado(DateTime tiempoEstimadoFinalizacion)
+        {
+            if (this.EstadoPedido != EEstadoPedido.Pendiente)
+            {
+                throw new Exception($"No se puede asignar una fecha estimada de finalizacion al pedido ya que el pedido se encuentra {this.EstadoPedido}");
+            }
+            else
+            {
+                this.TiempoEstimadoFinalizacion = tiempoEstimadoFinalizacion;
+                this.CambiarEstado(this.EstadoPedido);
+            }
+
+        }
 
     }
 }

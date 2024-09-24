@@ -2,6 +2,7 @@
 using BLL.DTO.Pedidos;
 using BLL.Services.Interface;
 using DAL.UnitOfWork;
+using Entities;
 using Entities.Enums;
 using System;
 using System.Collections.Generic;
@@ -20,14 +21,21 @@ namespace BLL.Services
             return _mapper.Map<PedidosDTO>(pedido);
         }
 
-        public Task<List<PedidosDTO>> FueraDeTiempo()
+        public async Task<List<PedidosDTO>> ObtenerPedidosFueraDeTiempo()
         {
-            throw new NotImplementedException();
+            var result = await _unitOfWork.PedidosRepository.ObtenerPedidoFueraDeTiempo();
+            return _mapper.Map<List<PedidosDTO>>(result);
         }
 
-        public Task<PedidosDTO> ObtenerPedidoEnPreparacion(int id)
+        public async Task<DateTime> ObtenerTiempoEstimadoPedidoDePreparacion(int idPedido)
         {
-            throw new NotImplementedException();
+            return await _unitOfWork.PedidosRepository.ObtenerTiempoEstimadoPedidoDePreparacion(idPedido);
+        }
+
+        public async Task<PedidosDTO> PonerPedidoEnPreparacion(int idPedido, DateTime tiempoEstimado)
+        {
+            var result = await _unitOfWork.PedidosRepository.PonerPedidoEnPreparacion(idPedido, tiempoEstimado);
+            return _mapper.Map<PedidosDTO>(result);
         }
 
         public async Task<List<PedidosDTO>> ObtenerPedidosPendientes()
@@ -35,5 +43,6 @@ namespace BLL.Services
             var result = await _unitOfWork.PedidosRepository.ObtenerPedidosPendientes();
             return _mapper.Map<List<PedidosDTO>>(result);
         }
+
     }
 }

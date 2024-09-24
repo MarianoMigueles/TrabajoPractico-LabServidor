@@ -23,15 +23,23 @@ namespace DAL.Repositorios
             pedidos.CambiarEstado(estado);
         }
 
-        public Task<List<Pedidos>> FueraDeTiempo()
+        public Task<List<Pedidos>> ObtenerPedidoFueraDeTiempo()
         {
             var result = _context.Pedidos.Where(x => x.EstadoPedido == EEstadoPedido.EntregadoFueraDeTiempo).ToListAsync();
             return result;
         }
 
-        public async Task<Pedidos> ObtenerPedidoEnPreparacion(int id)
+        public async Task<DateTime> ObtenerTiempoEstimadoPedidoDePreparacion(int idPedido)
         {
-            throw new NotImplementedException();
+            var result = await this.GetById(idPedido);
+            return result.TiempoEstimadoFinalizacion;
+        }
+
+        public async Task<Pedidos> PonerPedidoEnPreparacion(int idPedido, DateTime tiempoEstimado)
+        {
+            var result = await this.GetById(idPedido);
+            result.CambiarEstado(tiempoEstimado);
+            return result;
         }
 
         public async Task<List<Pedidos>> ObtenerPedidosPendientes()
@@ -39,6 +47,5 @@ namespace DAL.Repositorios
             var pedido = await _context.Pedidos.Where(x => x.EstadoPedido == EEstadoPedido.Pendiente).ToListAsync();
             return pedido;
         }
-
     }
 }
