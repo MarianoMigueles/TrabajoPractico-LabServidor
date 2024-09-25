@@ -1,6 +1,7 @@
 ﻿using Ar.edu.ISTEA.TrabajoPractico_LabServidor.Dal;
 using DAL.Repositorios.Interfaces;
 using Entities;
+using Entities.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,11 @@ namespace DAL.Repositorios
         {
         }
 
-
+        public async Task<Empleados> ActualizarEstadoEmpleado(int idEmpleado, EEstadoEmpleado estado)
+        {
+            var result = await this.GetById(idEmpleado);
+            result.Estado = estado;
+            return result;
+        }
     }
 }

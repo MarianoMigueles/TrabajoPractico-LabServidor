@@ -19,14 +19,14 @@ namespace DAL.Repositorios
 
         public async Task<Mesas> CambiarEstado(int idMesa, EEstadoMesa estadoMesa)
         {
-            Mesas mesa = await _context.Mesas.Where(x => x.IdMesa == idMesa).FirstOrDefaultAsync() ?? throw new Exception("La mesa no fue encontrada");
+            Mesas mesa = await this.GetById(idMesa) ?? throw new Exception("La mesa no fue encontrada");
             mesa.EstadoMesa = estadoMesa;
             return mesa;
         }
 
         public async Task<Mesas> CerrarMesa(int idMesa)
         {
-            var mesa = await _context.Mesas.Where(x => x.IdMesa == idMesa).FirstOrDefaultAsync() ?? throw new Exception("La mesa no fue encontrada");
+            var mesa = await this.GetById(idMesa) ?? throw new Exception("La mesa no fue encontrada");
             mesa.EstadoMesa = EEstadoMesa.Cerrada;
             return mesa;
         }

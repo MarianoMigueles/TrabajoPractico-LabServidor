@@ -33,7 +33,8 @@ namespace DAL.Repositorios
 
         public async Task<T> GetById(int id)
         {
-            return await _context.Set<T>().FindAsync(id);
+            var result = await _context.Set<T>().FindAsync(id);
+            return result?? throw new Exception($"no se encontro ningun {typeof(T).Name} con el id {id}.");
         }
 
         public void Update(T entity)

@@ -1,5 +1,8 @@
-﻿using AutoMapper;
+﻿using Ar.edu.ISTEA.TrabajoPractico_LabServidor.Dal;
+using AutoMapper;
+using DAL.Repositorios.Interfaces;
 using DAL.UnitOfWork;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
