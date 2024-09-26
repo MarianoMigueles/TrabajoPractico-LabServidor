@@ -16,7 +16,7 @@ namespace Entities
         public int Id { get; set; }
 
         [ForeignKey(nameof(Empleado))]
-        public int EmpleadoId { get; set; }
+        public int IdEmpleado { get; set; }
         public Empleados Empleado { get; set; }
         public DateTime FechaIngreso { get; set; }
     }

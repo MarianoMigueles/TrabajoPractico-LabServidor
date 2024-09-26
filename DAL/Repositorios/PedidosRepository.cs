@@ -23,9 +23,9 @@ namespace DAL.Repositorios
             pedidos.CambiarEstado(estado);
         }
 
-        public Task<List<Pedidos>> ObtenerPedidoFueraDeTiempo()
+        public async Task<List<Pedidos>> ObtenerPedidoFueraDeTiempo()
         {
-            var result = _context.Pedidos.Where(x => x.EstadoPedido == EEstadoPedido.EntregadoFueraDeTiempo).ToListAsync();
+            var result = await _context.Pedidos.Where(x => x.EstadoPedido == EEstadoPedido.EntregadoFueraDeTiempo).ToListAsync();
             return result;
         }
 

@@ -19,11 +19,21 @@ namespace BLL.Automapper
         public AutomapperProfile()
         {
             CreateMap<Comandas, ComandaDTO>().ReverseMap();
-            CreateMap<Empleados, EmpleadoDTO>().ReverseMap();
-            CreateMap<Empleados, EmpleadoLogInDTO>().ReverseMap();
             CreateMap<Mesas, MesaDTO>().ReverseMap();
             CreateMap<Pedidos, PedidosDTO>().ReverseMap();
             CreateMap<Productos, ProductoDTO>().ReverseMap();
+
+            CreateMap<Empleados, EmpleadoDTO>().ReverseMap();
+            CreateMap<LogInEmpleadoDTO, EmpleadoLogInDTO>()
+                .ForMember(dest => dest.Usuario, opt => opt.MapFrom(src => src.Empleado.Usuario))
+                .ForMember(dest => dest.Rol, opt => opt.MapFrom(src => src.Empleado.Rol))
+                .ForMember(dest => dest.Sector, opt => opt.MapFrom(src => src.Empleado.Sector))
+                .ReverseMap();
+
+            CreateMap<OperacionesEmpleados, OperacionesEmpleadoDTO>()
+                .ForMember(dest => dest.Usuario, opt => opt.MapFrom(src => src.Empleado.Usuario))
+                .ForMember(dest => dest.Nombre, opt => opt.MapFrom(src => src.Empleado.Nombre))
+                .ReverseMap();
         }
     }
 }

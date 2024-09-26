@@ -18,6 +18,7 @@ namespace BLL.Services
         {
             var pedido = await _unitOfWork.PedidosRepository.GetById(idPedido);
             _unitOfWork.PedidosRepository.CambiarEstado(pedido, estado); // no se si la falta de asincronismo puede ocasionar un problema
+            await _unitOfWork.Save();
             return _mapper.Map<PedidosDTO>(pedido);
         }
 
@@ -35,6 +36,7 @@ namespace BLL.Services
         public async Task<PedidosDTO> PonerPedidoEnPreparacion(int idPedido, DateTime tiempoEstimado)
         {
             var result = await _unitOfWork.PedidosRepository.PonerPedidoEnPreparacion(idPedido, tiempoEstimado);
+            await _unitOfWork.Save();
             return _mapper.Map<PedidosDTO>(result);
         }
 

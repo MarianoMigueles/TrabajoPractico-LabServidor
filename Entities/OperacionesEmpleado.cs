@@ -21,7 +21,7 @@ namespace Entities
         public Empleados Empleado { get; set; }
 
         public ESectores Sector { get; set; }
-        public int Cantidad { get; set; }
+        public string Descripcion { get; set; }
         public DateTime FechaOperacion { get; set; }
     }
 }

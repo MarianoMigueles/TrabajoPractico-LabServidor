@@ -11,9 +11,10 @@ namespace DAL.Repositorios.Interfaces
     public interface IEmpleadosRepository : IRepository<Empleados>
     {
         Task<Empleados> ActualizarEstadoEmpleado(int idEmpleado, EEstadoEmpleado estado);
-        Task<LogInEmpleado> ObtenerHorarioIngreso(int idEmpleado);
+        Task<List<LogInEmpleado>> ObtenerHorarioIngreso(int idEmpleado);
         Task<OperacionesEmpleados> ObtenerOperacionesEmpleado(int idEmpleado);
-        Task<OperacionesEmpleados> ObtenerOperacionesPorSector(ESectores sector);
-        Task<List<OperacionesEmpleados>> ObtenerOperacionesPorEmpleadoEnSector(ESectores sector);
+        Task<int> ObtenerOperacionesPorSector(ESectores sector);
+        Task<List<OperacionesEmpleados>> ObtenerOperacionesPorEmpleadoEnSector(int idEmplead, ESectores sector);
+        Task GenerarOperacion(OperacionesEmpleados operacion); 
     }
 }

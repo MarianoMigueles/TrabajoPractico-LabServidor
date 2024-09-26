@@ -12,5 +12,10 @@ namespace BLL.Services.Interface
     public interface IEmpleadosService
     {
         Task<EmpleadoDTO> ActualizarEstadoEmpleado(int idEmpleado, string estado);
+        Task<List<EmpleadoLogInDTO>> ObtenerHorarioIngreso(int idEmpleado);
+        Task<OperacionesEmpleadoDTO> ObtenerOperacionesEmpleado(int idEmpleado);
+        Task<int> ObtenerOperacionesPorSector(ESectores sector);
+        Task<List<OperacionesEmpleadoDTO>> ObtenerOperacionesPorEmpleadoEnSector(int idEmpleado, ESectores sector);
+        Task GenerarOperacion(OperacionesEmpleados operacion);
     }
 }

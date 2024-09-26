@@ -7,7 +7,8 @@ namespace BLL.DTO.Empleados
     {
         public string Usuario { get; set; }
         public ERoles Rol { get; set; }
-        public ESectores Sector { get; set; } 
-            
+        public ESectores Sector { get; set; }
+        public DateTime FechaIngreso { get; set; }
+
     }
 }

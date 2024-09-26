@@ -15,12 +15,14 @@ namespace BLL.Services
         public async Task<MesaDTO> CambiarEstado(int idMesa, EEstadoMesa estadoMesa)
         {
             var result = await _unitOfWork.MesaRepository.CambiarEstado(idMesa, estadoMesa);
+            await _unitOfWork.Save();
             return _mapper.Map<MesaDTO>(result);
         }
 
         public async Task<MesaDTO> CerrarMesa(int idMesa)
         {
             var result = await _unitOfWork.MesaRepository.CerrarMesa(idMesa);
+            await _unitOfWork.Save();
             return _mapper.Map<MesaDTO>(result);
         }
     }
