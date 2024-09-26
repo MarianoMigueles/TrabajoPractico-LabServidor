@@ -21,7 +21,10 @@ builder.Services.AddSwaggerGen();
 
 
 //--------------ConnectionString------------------------ 
-builder.Services.AddDbContext<DataContext>(op => op.UseSqlServer(builder.Configuration.GetConnectionString("CadenaSQL")));
+builder.Services.AddDbContext<DataContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("CadenaSQL"));
+});
 
 //INYECCIONES
 builder.Services.AddScoped<IComandasRepository, ComandasRepository>();

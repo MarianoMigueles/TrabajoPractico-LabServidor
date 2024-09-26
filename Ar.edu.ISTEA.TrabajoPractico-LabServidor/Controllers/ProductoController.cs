@@ -1,4 +1,5 @@
-﻿using BLL.Services.Interface;
+﻿using BLL.DTO.Productos;
+using BLL.Services.Interface;
 using Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -17,14 +18,14 @@ namespace Ar.edu.ISTEA.TrabajoPractico_LabServidor.Controllers
         }
 
         [HttpGet("MasVendido")]
-        public async Task<ActionResult<Productos>> MasVendido()
+        public async Task<ActionResult<ProductoDTO>> MasVendido()
         {
             var result = await _productosService.MasVendido();
             return Ok(result);
         }
 
         [HttpGet("MenosVendido")]
-        public async Task<ActionResult<Productos>> MenosVendido()
+        public async Task<ActionResult<ProductoDTO>> MenosVendido()
         {
             var result = await _productosService.MenosVendido();
             return Ok(result);

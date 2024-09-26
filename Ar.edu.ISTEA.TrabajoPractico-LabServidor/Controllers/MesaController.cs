@@ -1,4 +1,5 @@
-﻿using BLL.Services.Interface;
+﻿using BLL.DTO.Mesas;
+using BLL.Services.Interface;
 using Entities;
 using Entities.Enums;
 using Microsoft.AspNetCore.Http;
@@ -18,14 +19,14 @@ namespace Ar.edu.ISTEA.TrabajoPractico_LabServidor.Controllers
         }
 
         [HttpPatch("CambiarEstado")]
-        public async Task<ActionResult<Mesas>> CambiarEstado(int idMesa, EEstadoMesa estadoMesa)
+        public async Task<ActionResult<MesaDTO>> CambiarEstado(int idMesa, EEstadoMesa estadoMesa)
         {
             var result = await _mesaService.CambiarEstado(idMesa, estadoMesa);
             return Ok(result);
         }
 
         [HttpPatch("CerrarMesa")]
-        public async Task<ActionResult<Mesas>> CerrarMesa(int idMesa)
+        public async Task<ActionResult<MesaDTO>> CerrarMesa(int idMesa)
         {
             var result = await _mesaService.CerrarMesa(idMesa);
             return Ok(result);
