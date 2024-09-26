@@ -14,7 +14,7 @@ using BLL.DTO.Productos;
 
 namespace BLL.Automapper
 {
-    internal class AutomapperProfile : Profile
+    public class AutomapperProfile : Profile
     {
         public AutomapperProfile()
         {
@@ -24,7 +24,7 @@ namespace BLL.Automapper
             CreateMap<Productos, ProductoDTO>().ReverseMap();
 
             CreateMap<Empleados, EmpleadoDTO>().ReverseMap();
-            CreateMap<LogInEmpleadoDTO, EmpleadoLogInDTO>()
+            CreateMap<LogInEmpleado, EmpleadoLogInDTO>()
                 .ForMember(dest => dest.Usuario, opt => opt.MapFrom(src => src.Empleado.Usuario))
                 .ForMember(dest => dest.Rol, opt => opt.MapFrom(src => src.Empleado.Rol))
                 .ForMember(dest => dest.Sector, opt => opt.MapFrom(src => src.Empleado.Sector))
