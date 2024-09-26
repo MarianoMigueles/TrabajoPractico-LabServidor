@@ -14,7 +14,7 @@ using BLL.DTO.Productos;
 
 namespace BLL.Automapper
 {
-    internal class AutomapperProfile : Profile
+    public class AutomapperProfile : Profile
     {
         public AutomapperProfile()
         {
