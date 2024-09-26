@@ -31,6 +31,7 @@ namespace BLL.Services
         public async Task GenerarOperacion(OperacionesEmpleados operacion)
         {
             await _unitOfWork.EmpleadosRepository.GenerarOperacion(operacion);
+            await _unitOfWork.Save();
         }
 
         public async Task<List<EmpleadoLogInDTO>> ObtenerHorarioIngreso(int idEmpleado)
