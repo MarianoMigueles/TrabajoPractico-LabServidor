@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Entities;
+using DAL.Data.DataSeed;
 
 namespace Ar.edu.ISTEA.TrabajoPractico_LabServidor.Dal
 {
@@ -8,6 +9,14 @@ namespace Ar.edu.ISTEA.TrabajoPractico_LabServidor.Dal
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder.ApplyConfiguration(new ComandasSeed());
+            modelBuilder.ApplyConfiguration(new EmpleadosSeed());
+            modelBuilder.ApplyConfiguration(new LogInEmpleadoSeed());
+            modelBuilder.ApplyConfiguration(new OperacionesEmpleadosSeed());
+            modelBuilder.ApplyConfiguration(new PedidosSeed());
+            modelBuilder.ApplyConfiguration(new ProductosSeed());
+            modelBuilder.ApplyConfiguration(new MesasSeed());
         }
 
         public virtual DbSet<Empleados> Empleados { get; set; }
