@@ -6,6 +6,8 @@ namespace Entities
     public class Comandas
     {
         [Key]
+        [Required]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int IdComandas {  get; set; }
         public int IdMesa { get; set; }
         public string NombreCliente { get; set; }

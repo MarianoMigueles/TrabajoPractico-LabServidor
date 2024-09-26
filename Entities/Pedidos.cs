@@ -12,10 +12,15 @@ namespace Entities
     public class Pedidos
     {
         [Key]
+        [Required]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int IdPedidos { get; set; }
+
+        [ForeignKey(nameof(IdComandaNavigation))]
         public int IdComandas { get; set; }
+
+        [ForeignKey(nameof(IdProductoNavigation))]
         public int IdProducto { get; set; }
-        public int IdEstado { get; set; }
         public int Cantidad { get; set; }
         public DateTime FechaCreacion { get; set; }
         public DateTime FechaFinalizacion { get; set; }
