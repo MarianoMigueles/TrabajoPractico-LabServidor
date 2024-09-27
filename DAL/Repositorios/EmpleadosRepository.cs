@@ -29,6 +29,12 @@ namespace DAL.Repositorios
             await _context.Operaciones.AddAsync(operacion);
         }
 
+        public async Task<Empleados> LogInEmpleado(string userName, string password)
+        {
+            var user = await _context.Empleados.Where(x => x.Usuario == userName && x.Passsword == password).FirstOrDefaultAsync();
+            return user;
+        }
+
         public async Task<List<LogInEmpleado>> ObtenerHorarioIngreso(int idEmpleado)
         {
             return await _context.LogIns.Where(x => x.IdEmpleado == idEmpleado).ToListAsync();

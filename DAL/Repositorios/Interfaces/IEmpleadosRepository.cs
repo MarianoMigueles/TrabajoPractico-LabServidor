@@ -15,6 +15,7 @@ namespace DAL.Repositorios.Interfaces
         Task<OperacionesEmpleados> ObtenerOperacionesEmpleado(int idEmpleado);
         Task<int> ObtenerOperacionesPorSector(ESectores sector);
         Task<List<OperacionesEmpleados>> ObtenerOperacionesPorEmpleadoEnSector(int idEmplead, ESectores sector);
-        Task GenerarOperacion(OperacionesEmpleados operacion); 
+        Task GenerarOperacion(OperacionesEmpleados operacion);
+        Task<Empleados> LogInEmpleado(string userName, string password);
     }
 }
