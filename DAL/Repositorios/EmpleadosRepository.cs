@@ -31,22 +31,22 @@ namespace DAL.Repositorios
 
         public async Task<List<LogInEmpleado>> ObtenerHorarioIngreso(int idEmpleado)
         {
-            return await _context.LogIns.Where(x => x.IdEmpleado == idEmpleado).ToListAsync();
+            return await _context.LogIns.Include(e => e.Empleado).Where(x => x.IdEmpleado == idEmpleado).ToListAsync();
         }
 
         public async Task<OperacionesEmpleados> ObtenerOperacionesEmpleado(int idEmpleado)
         {
-            return await _context.Operaciones.Where(x => x.IdEmpleado == idEmpleado).FirstOrDefaultAsync();
+            return await _context.Operaciones.Include(e => e.Empleado).Where(x => x.IdEmpleado == idEmpleado).FirstOrDefaultAsync();
         }
 
         public async Task<List<OperacionesEmpleados>> ObtenerOperacionesPorEmpleadoEnSector(int idEmplead, ESectores sector)
         {
-            return await _context.Operaciones.Where(x => x.Sector == sector).ToListAsync();
+            return await _context.Operaciones.Include(e => e.Empleado).Where(x => x.Sector == sector).ToListAsync();
         }
 
         public async Task<int> ObtenerOperacionesPorSector(ESectores sector)
         {
-            var result = await _context.Operaciones.Where(x => x.Sector == sector).CountAsync();
+            var result = await _context.Operaciones.Include(e => e.Empleado).Where(x => x.Sector == sector).CountAsync();
             return result;
         }
     }
