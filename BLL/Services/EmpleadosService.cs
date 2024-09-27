@@ -28,9 +28,10 @@ namespace BLL.Services
             }
         }
 
-        public async Task GenerarOperacion(OperacionesEmpleados operacion)
+        public async Task GenerarOperacion(OperacionesEmpleadoDTO operacion)
         {
-            await _unitOfWork.EmpleadosRepository.GenerarOperacion(operacion);
+            var nuevaOperacion = _mapper.Map<OperacionesEmpleados>(operacion);
+            await _unitOfWork.EmpleadosRepository.GenerarOperacion(nuevaOperacion);
             await _unitOfWork.Save();
         }
 
