@@ -35,6 +35,12 @@ namespace BLL.Services
             await _unitOfWork.Save();
         }
 
+        public async Task<EmpleadoDTO> LogInEmpleado(string userName, string password)
+        {
+            var result = await _unitOfWork.EmpleadosRepository.LogInEmpleado(userName, password);
+            return _mapper.Map<EmpleadoDTO>(result);
+        }
+
         public async Task<List<EmpleadoLogInDTO>> ObtenerHorarioIngreso(int idEmpleado)
         {
             var result = await _unitOfWork.EmpleadosRepository.ObtenerHorarioIngreso(idEmpleado);

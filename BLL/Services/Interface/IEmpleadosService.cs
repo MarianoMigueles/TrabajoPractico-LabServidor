@@ -17,5 +17,7 @@ namespace BLL.Services.Interface
         Task<int> ObtenerOperacionesPorSector(ESectores sector);
         Task<List<OperacionesEmpleadoDTO>> ObtenerOperacionesPorEmpleadoEnSector(int idEmpleado, ESectores sector);
         Task GenerarOperacion(OperacionesEmpleados operacion);
+
+        Task<EmpleadoDTO> LogInEmpleado(string userName, string password);
     }
 }
