@@ -12,12 +12,8 @@ using System.Threading.Tasks;
 
 namespace DAL.Repositorios
 {
-    public class PedidosRepository : Repository<Pedidos>, IPedidosRepository
+    public class PedidosRepository(DataContext context) : Repository<Pedidos>(context), IPedidosRepository 
     {
-        public PedidosRepository(DataContext context) : base(context)
-        {
-        }
-
         public void CambiarEstado(Pedidos pedidos, EEstadoPedido estado)
         {
             pedidos.CambiarEstado(estado);
@@ -41,7 +37,6 @@ namespace DAL.Repositorios
             result.CambiarEstado(tiempoEstimado);
             return result;
         }
-
         public async Task<List<Pedidos>> ObtenerPedidosPendientes()
         {
             var pedido = await _context.Pedidos.Where(x => x.EstadoPedido == EEstadoPedido.Pendiente).ToListAsync();

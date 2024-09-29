@@ -23,8 +23,8 @@ namespace Entities
         public int IdProducto { get; set; }
         public int Cantidad { get; set; }
         public DateTime FechaCreacion { get; set; }
-        public DateTime FechaFinalizacion { get; set; }
-        public DateTime TiempoEstimadoFinalizacion { get; set; }
+        public DateTime? FechaFinalizacion { get; set; }
+        public DateTime? TiempoEstimadoFinalizacion { get; set; }
 
         public Comandas IdComandaNavigation { get; set; }
         public Productos IdProductoNavigation { get; set; }
@@ -45,7 +45,17 @@ namespace Entities
 
         public void CambiarEstado(EEstadoPedido estado)
         {
-            if(this.EstadoPedido == EEstadoPedido.ListoParaServir)
+            if ((int)estado < (int)this.EstadoPedido)
+            {
+                throw new Exception("No se puede cambiar el estado a uno anterior.");
+            }
+
+            if (estado == this.EstadoPedido)
+            {
+                throw new Exception("El pedido ya se encuentra en este estado.");
+            }
+
+            if (this.EstadoPedido == EEstadoPedido.ListoParaServir)
             {
                 this.FechaFinalizacion = DateTime.Now;
 
