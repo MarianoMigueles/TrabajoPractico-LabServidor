@@ -12,9 +12,11 @@ namespace BLL.Services.Interface
     {
         Task<ProductoDTO> MasVendido();
         Task<ProductoDTO> MenosVendido();
-
         Task<bool> CrearProducto(ProductoDTO producto);
         Task<bool> EliminarProducto(int id);
         Task<ProductoDTO> ObtenerProductoPorId(int id);
+        Task ReducirStock(int idProducto, int stock);
+        Task RellenarStock(int idProducto, int stock);
+
     }
 }

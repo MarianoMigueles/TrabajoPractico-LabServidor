@@ -46,5 +46,17 @@ namespace BLL.Services
             var result = await _unitOfWork.ProductosRepository.GetById(id);
             return _mapper.Map<ProductoDTO>(result);
         }
+
+        public async Task ReducirStock(int idProducto, int stock)
+        {
+            _unitOfWork.ProductosRepository.ReducirStock(idProducto, stock);
+            await _unitOfWork.Save();
+        }
+
+        public async Task RellenarStock(int idProducto, int stock)
+        {
+            _unitOfWork.ProductosRepository.RellenarStock(idProducto, stock);
+            await _unitOfWork.Save();
+        }
     }
 }
