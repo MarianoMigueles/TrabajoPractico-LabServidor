@@ -31,10 +31,21 @@ namespace BLL.Services
 
         public async Task<bool> CrearEmpleado(EmpleadoDTO empleado)
         {
-            var nuevoEmpleado = _mapper.Map<Empleados>(empleado);
-            await _unitOfWork.EmpleadosRepository.Create(nuevoEmpleado);
-            await _unitOfWork.Save();
-            return true;
+            var validation = await _unitOfWork.EmpleadosRepository.ObtenerEmpleadoPorNombreUsuario(empleado.Usuario);
+
+            if(validation == null)
+            {
+                var nuevoEmpleado = _mapper.Map<Empleados>(empleado);
+                await _unitOfWork.EmpleadosRepository.Create(nuevoEmpleado);
+                await _unitOfWork.Save();
+                return true;
+            }
+            else
+            {
+                throw new InvalidOperationException("El usuario espesificado ya se encuentra registrado, intente con algo diferente");
+            }
+
+            
         }
 
         public async Task<bool> EliminarEmpleado(int id)

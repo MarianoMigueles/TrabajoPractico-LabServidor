@@ -30,10 +30,19 @@ namespace BLL.Services
 
         public async Task<bool> CrearMesa(MesaDTO mesa)
         {
-            var nuevaMesa = _mapper.Map<Mesas>(mesa);
-            await _unitOfWork.MesaRepository.Create(nuevaMesa);
-            await _unitOfWork.Save();
-            return true;
+            var validation = await _unitOfWork.MesaRepository.ObtenerMesaPorNombre(mesa.Nombre);
+            if(validation == null)
+            {
+                var nuevaMesa = _mapper.Map<Mesas>(mesa);
+                await _unitOfWork.MesaRepository.Create(nuevaMesa);
+                await _unitOfWork.Save();
+                return true;
+            }
+            else
+            {
+                throw new InvalidOperationException("No se pudo crear la mesa ya que el nombre coincide con el nombre de una mesa ya existente");
+            }
+            
         }
 
         public async Task<bool> EliminarMesa(int id)

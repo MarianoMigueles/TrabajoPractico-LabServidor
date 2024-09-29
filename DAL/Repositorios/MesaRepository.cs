@@ -27,5 +27,10 @@ namespace DAL.Repositorios
             return mesa;
         }
 
+        public async Task<Mesas> ObtenerMesaPorNombre(string nombre)
+        {
+            return await _context.Mesas.Where(x => x.Nombre.Equals(nombre)).FirstOrDefaultAsync();
+        }
+
     }
 }

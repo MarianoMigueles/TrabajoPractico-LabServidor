@@ -12,5 +12,6 @@ namespace DAL.Repositorios.Interfaces
     {
         Task<Mesas> CambiarEstado(int idMesa, EEstadoMesa estadoMesa);
         Task<Mesas> CerrarMesa(int idMesa);
+        Task<Mesas> ObtenerMesaPorNombre(string nombre);
     }
 }

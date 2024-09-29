@@ -19,16 +19,19 @@ namespace Entities
         public EEstadoMesa EstadoMesa { get; set; }
 
         public void CambiarEstado(EEstadoMesa estadoMesa)
-        {
+        {         
+
             if(this.EstadoMesa == estadoMesa)
             {
-                throw new Exception("La mesa ya se encuentra en ese estado");
+                throw new InvalidOperationException("La mesa ya se encuentra en ese estado");
             }
-
-
-            if(this.EstadoMesa == EEstadoMesa.Cerrada)
+            else if (this.EstadoMesa == EEstadoMesa.Cerrada)
             {
-                throw new Exception("No se puede cambiar el estado de la mesa ya que se encuentra cerrada");
+                throw new InvalidOperationException("No se puede cambiar el estado de la mesa ya que se encuentra cerrada");
+            }
+            else if (estadoMesa == EEstadoMesa.Cerrada)
+            {
+                throw new InvalidOperationException("Solo el administrador puede cerrar la mesa");
             }
 
             this.EstadoMesa = estadoMesa;

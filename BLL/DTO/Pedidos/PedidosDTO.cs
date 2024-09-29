@@ -4,7 +4,6 @@ namespace BLL.DTO.Pedidos
 {
     public class PedidosDTO
     {
-        public int IdPedidos { get; set; }
         public int Cantidad { get; set; }
         public EEstadoPedido EstadoPedido { get; set; }
         public DateTime FechaCreacion { get; set; }
