@@ -49,13 +49,15 @@ namespace BLL.Services
 
         public async Task ReducirStock(int idProducto, int stock)
         {
-            _unitOfWork.ProductosRepository.ReducirStock(idProducto, stock);
+            var producto = await _unitOfWork.ProductosRepository.GetById(idProducto);
+            _unitOfWork.ProductosRepository.ReducirStock(producto, stock);
             await _unitOfWork.Save();
         }
 
         public async Task RellenarStock(int idProducto, int stock)
         {
-            _unitOfWork.ProductosRepository.RellenarStock(idProducto, stock);
+            var producto = await _unitOfWork.ProductosRepository.GetById(idProducto);
+            _unitOfWork.ProductosRepository.RellenarStock(producto, stock);
             await _unitOfWork.Save();
         }
     }

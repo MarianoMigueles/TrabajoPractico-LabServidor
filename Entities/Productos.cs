@@ -22,14 +22,7 @@ namespace Entities
             get => this._Stock;
             set
             {
-                if((this._Stock - value) < 0)
-                {
-                    throw new InvalidOperationException($"No se pudo reducir el stock. La cantidad disponible ({this._Stock}) es insuficiente para cubrir la cantidad solicitada ({value}).");
-                }
-                else
-                {
-                    this._Stock = value;
-                }
+                this._Stock = value;
             }
         }
         public int Precio { get; set; }
@@ -37,11 +30,26 @@ namespace Entities
 
         public void ReducirStock(int cantidad)
         {
+            if (cantidad <= 0)
+            {
+                throw new ArgumentException("La cantidad a reducir debe ser mayor que cero.");
+            }
+
+            if (Stock - cantidad < 0)
+            {
+                throw new InvalidOperationException($"No se pudo reducir el stock. La cantidad disponible ({this._Stock}) es insuficiente para cubrir la cantidad solicitada ({cantidad}).");
+            }
+
             this.Stock -= cantidad;
         }
 
         public void RellenarStock(int nuevoStock)
         {
+            if (nuevoStock <= 0)
+            {
+                throw new ArgumentException("La cantidad a rellenar debe ser mayor que cero.");
+            }
+
             this.Stock += nuevoStock;
         }
 

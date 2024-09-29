@@ -42,15 +42,13 @@ namespace DAL.Repositorios
             return await _context.Productos.FindAsync(result.IdProducto) ?? null;
         }
 
-        public async void ReducirStock(int idProducto, int stock)
+        public async void ReducirStock(Productos producto, int stock)
         {
-            var producto = await this.GetById(idProducto);
             producto.ReducirStock(stock);
         }
 
-        public async void RellenarStock(int idProducto, int stock)
+        public async void RellenarStock(Productos producto, int stock)
         {
-            var producto = await this.GetById(idProducto);
             producto.RellenarStock(stock);
         }
     }
