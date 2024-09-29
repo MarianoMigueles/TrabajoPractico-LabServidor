@@ -21,6 +21,7 @@ namespace BLL.Automapper
             CreateMap<Comandas, ComandaDTO>().ReverseMap();
             CreateMap<Mesas, MesaDTO>().ReverseMap();
             CreateMap<Pedidos, PedidosDTO>().ReverseMap();
+            CreateMap<PedidoCreateRequestDTO, Pedidos>();
             CreateMap<Productos, ProductoDTO>().ReverseMap();
             CreateMap<Empleados, LogInEmpleado>()
                 .ForMember(dest => dest.IdEmpleado, opt => opt.MapFrom(src => src.IdEmpleados)) 
@@ -30,7 +31,7 @@ namespace BLL.Automapper
                 .ForMember(dest => dest.IdEmpleado, opt => opt.MapFrom(src => src.IdEmpleados))
                 .ForMember(dest => dest.FechaOperacion, opt => opt.MapFrom(src => DateTime.Now));
 
-
+            CreateMap<EmpleadoCreateRequestDTO, Empleados>();
             CreateMap<Empleados, EmpleadoDTO>().ReverseMap();
             CreateMap<LogInEmpleado, EmpleadoLogInDTO>()
                 .ForMember(dest => dest.Usuario, opt => opt.MapFrom(src => src.Empleado.Usuario))

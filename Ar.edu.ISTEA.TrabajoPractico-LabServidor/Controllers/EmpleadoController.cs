@@ -60,7 +60,7 @@ namespace Ar.edu.ISTEA.TrabajoPractico_LabServidor.Controllers
 
 
         [HttpPost("CrearEmpleado")]
-        public async Task<ActionResult<bool>> CrearEmpleado(EmpleadoDTO empleado)
+        public async Task<ActionResult<bool>> CrearEmpleado(EmpleadoCreateRequestDTO empleado)
         {
             var result = await _empleadoService.CrearEmpleado(empleado);
             return Ok(result);

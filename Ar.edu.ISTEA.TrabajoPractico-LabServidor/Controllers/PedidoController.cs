@@ -1,4 +1,5 @@
-﻿using BLL.DTO.Pedidos;
+﻿using BLL.DTO.Empleados;
+using BLL.DTO.Pedidos;
 using BLL.Services.Interface;
 using Entities;
 using Entities.Enums;
@@ -19,7 +20,7 @@ namespace Ar.edu.ISTEA.TrabajoPractico_LabServidor.Controllers
         }
 
         [HttpPost("CrearPedido")]
-        public async Task<ActionResult<bool>> CrearPedido(PedidosDTO pedido)
+        public async Task<ActionResult<bool>> CrearPedido(PedidoCreateRequestDTO pedido)
         {
             var result = await _pedidoService.CrearPedido(pedido);
             return Ok(result);

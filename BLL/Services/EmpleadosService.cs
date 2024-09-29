@@ -29,7 +29,7 @@ namespace BLL.Services
             }
         }
 
-        public async Task<bool> CrearEmpleado(EmpleadoDTO empleado)
+        public async Task<bool> CrearEmpleado(EmpleadoCreateRequestDTO empleado)
         {
             var nuevoEmpleado = _mapper.Map<Empleados>(empleado);
             await _unitOfWork.EmpleadosRepository.Create(nuevoEmpleado);

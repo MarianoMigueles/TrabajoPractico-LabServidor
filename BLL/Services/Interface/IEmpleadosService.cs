@@ -20,7 +20,7 @@ namespace BLL.Services.Interface
         Task GenerarOperacion(string usuario, string sector, string descripcion);
         Task GenerarInicioSecion(string usuario);
         Task<EmpleadoDTO> LogInEmpleado(string userName, string password);
-        Task<bool> CrearEmpleado(EmpleadoDTO empleado);
+        Task<bool> CrearEmpleado(EmpleadoCreateRequestDTO empleado);
         Task<EmpleadoDTO> ObtenerEmpleadoPorId(int id);
         Task<bool> EliminarEmpleado(int id);
     }
