@@ -46,5 +46,18 @@ namespace BLL.Services
             return _mapper.Map<List<PedidosDTO>>(result);
         }
 
+        public async Task<bool> CrearPedido(PedidosDTO pedido)
+        {
+            var nuevoPedido = _mapper.Map<Pedidos>(pedido);
+            await _unitOfWork.PedidosRepository.Create(nuevoPedido);
+            await _unitOfWork.Save();
+            return true;
+        }
+
+        public async Task<PedidosDTO> ConsultarEstadoPedido(int id)
+        {
+            var result = await _unitOfWork.PedidosRepository.GetById(id);
+            return _mapper.Map<PedidosDTO>(result);
+        }
     }
 }

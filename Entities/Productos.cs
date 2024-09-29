@@ -16,13 +16,33 @@ namespace Entities
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int IdProducto { get; set; }
         public string Descripcion { get; set; }
-        public int Stock { get; set; }
+
+        private int _Stock;
+        public int Stock {
+            get => this._Stock;
+            set
+            {
+                if((this._Stock - value) < 0)
+                {
+                    throw new InvalidOperationException($"No se pudo reducir el stock. La cantidad disponible ({this._Stock}) es insuficiente para cubrir la cantidad solicitada ({value}).");
+                }
+                else
+                {
+                    this._Stock = value;
+                }
+            }
+        }
         public int Precio { get; set; }
         public ESectores Sector { get; set; }
 
-        public void ReducirStock(int? cantidad = null)
+        public void ReducirStock(int cantidad)
         {
-            this.Stock -= cantidad ?? 1;
+            this.Stock -= cantidad;
+        }
+
+        public void RellenarStock(int nuevoStock)
+        {
+            this.Stock += nuevoStock;
         }
 
     }

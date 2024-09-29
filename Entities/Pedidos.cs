@@ -67,7 +67,7 @@ namespace Entities
             else
             {
                 this.TiempoEstimadoFinalizacion = tiempoEstimadoFinalizacion;
-                this.CambiarEstado(this.EstadoPedido);
+                this.CambiarEstado(EEstadoPedido.EnPreparacion);
             }
 
         }

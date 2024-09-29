@@ -2,6 +2,7 @@
 using BLL.DTO.Mesas;
 using BLL.Services.Interface;
 using DAL.UnitOfWork;
+using Entities;
 using Entities.Enums;
 using System;
 using System.Collections.Generic;
@@ -24,6 +25,28 @@ namespace BLL.Services
         {
             var result = await _unitOfWork.MesaRepository.CerrarMesa(idMesa);
             await _unitOfWork.Save();
+            return _mapper.Map<MesaDTO>(result);
+        }
+
+        public async Task<bool> CrearMesa(MesaDTO mesa)
+        {
+            var nuevaMesa = _mapper.Map<Mesas>(mesa);
+            await _unitOfWork.MesaRepository.Create(nuevaMesa);
+            await _unitOfWork.Save();
+            return true;
+        }
+
+        public async Task<bool> EliminarMesa(int id)
+        {
+            var result = await _unitOfWork.MesaRepository.GetById(id);
+            _unitOfWork.MesaRepository.Delete(result);
+            await _unitOfWork.Save();
+            return true;
+        }
+
+        public async Task<MesaDTO> ObtenerMesaPorId(int id)
+        {
+            var result = await _unitOfWork.MesaRepository.GetById(id);
             return _mapper.Map<MesaDTO>(result);
         }
     }

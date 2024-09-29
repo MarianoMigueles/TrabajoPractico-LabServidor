@@ -2,7 +2,7 @@
 {
     public class ComandaDTO
     {
-        public int IdComandas { get; set; }
+        public int IdMesa { get; set; }
         public string NombreCliente { get; set; }
     }
 }

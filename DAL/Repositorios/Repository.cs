@@ -17,18 +17,41 @@ namespace DAL.Repositorios
             _context = context;
         }
         public async Task Create(T entity)
-        {
-            await _context.Set<T>().AddAsync(entity);
+        {          
+            try
+            {
+                await _context.Set<T>().AddAsync(entity);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"No se pudo actualizar la entidad del tipo {typeof(T).Name}. Error: {ex.Message}");
+            }
+
         }
 
         public void Delete(T entity)
         {
-            _context.Set<T>().Remove(entity);
+            try
+            {
+                _context.Set<T>().Remove(entity);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"No se pudo eliminar la entidad del tipo {typeof(T).Name}. Error: {ex.Message}");
+            }           
         }
 
         public async Task<List<T>> GetAll()
         {
-            return await _context.Set<T>().ToListAsync();
+            try
+            {
+                return await _context.Set<T>().ToListAsync();
+            } 
+            catch (Exception ex)
+            {
+                throw new Exception($"No se pudo obtener una lista del tipo {typeof(T).Name}. Error: {ex.Message}");
+            }
+            
         }
 
         public async Task<T> GetById(int id)
@@ -38,8 +61,15 @@ namespace DAL.Repositorios
         }
 
         public void Update(T entity)
-        {
-            _context.Set<T>().Update(entity);
+        {           
+            try
+            {
+                _context.Set<T>().Update(entity);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"No se pudo actualizar la entidad del tipo {typeof(T).Name}. Error: {ex.Message}");
+            }
         }
     }
 }

@@ -1,5 +1,6 @@
 
 using Ar.edu.ISTEA.TrabajoPractico_LabServidor.Dal;
+using Ar.edu.ISTEA.TrabajoPractico_LabServidor.Middlewares;
 using BLL.Automapper;
 using BLL.Services;
 using BLL.Services.Interface;
@@ -83,9 +84,15 @@ builder.Services.AddAutoMapper(typeof(AutomapperProfile));
 
 
 // Configure JWT authentication
+builder.Services.AddAuthorization(option =>
+{
+    option.AddPolicy("Admin", policy => policy.RequireClaim("Rol", "Admin"));
+    option.AddPolicy("Socio", policy => policy.RequireClaim("Rol", "Socio"));
+});
+
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
 {
-    options.RequireHttpsMetadata = false;
+    options.RequireHttpsMetadata = true;
     options.SaveToken = true;
     options.TokenValidationParameters = new TokenValidationParameters
     {
@@ -97,7 +104,6 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
     };
 });
 
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -108,6 +114,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseMiddleware<LogInMiddleware>();
+app.UseMiddleware<OperacionesMiddleware>();
 
 app.UseAuthorization();
 

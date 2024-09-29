@@ -1,4 +1,5 @@
-﻿using BLL.DTO.Pedidos;
+﻿using BLL.DTO.Mesas;
+using BLL.DTO.Pedidos;
 using Entities;
 using Entities.Enums;
 using System;
@@ -16,5 +17,7 @@ namespace BLL.Services.Interface
         Task<DateTime> ObtenerTiempoEstimadoPedidoDePreparacion(int idPedido);
         Task<PedidosDTO> PonerPedidoEnPreparacion(int idPedido, DateTime tiempoEstimado);
         Task<List<PedidosDTO>> ObtenerPedidosPendientes();
+        Task<bool> CrearPedido(PedidosDTO pedido);
+        Task<PedidosDTO> ConsultarEstadoPedido(int id);
     }
 }

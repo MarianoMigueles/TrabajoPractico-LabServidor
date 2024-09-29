@@ -10,12 +10,8 @@ using System.Threading.Tasks;
 
 namespace DAL.Repositorios
 {
-    public class ProductosRepository : Repository<Productos>, IProductosRepository
+    public class ProductosRepository(DataContext context) : Repository<Productos>(context), IProductosRepository
     {
-        public ProductosRepository(DataContext context) : base(context)
-        {
-        }
-
         public async Task<Productos> MasVendido()
         {
             var result = await _context.Pedidos
@@ -44,6 +40,18 @@ namespace DAL.Repositorios
                         .FirstOrDefaultAsync();
 
             return await _context.Productos.FindAsync(result.IdProducto) ?? null;
+        }
+
+        public async void ReducirStock(int idProducto, int stock)
+        {
+            var producto = await this.GetById(idProducto);
+            producto.ReducirStock(stock);
+        }
+
+        public async void RellenarStock(int idProducto, int stock)
+        {
+            var producto = await this.GetById(idProducto);
+            producto.RellenarStock(stock);
         }
     }
 }

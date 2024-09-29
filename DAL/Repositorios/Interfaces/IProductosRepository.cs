@@ -11,6 +11,8 @@ namespace DAL.Repositorios.Interfaces
     {
         Task<Productos> MasVendido();
         Task<Productos> MenosVendido();
+        void RellenarStock(int idProducto, int stock);
+        void ReducirStock(int idProducto, int stock);
 
 
     }

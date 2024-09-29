@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
+using BLL.DTO.Comandas;
 using BLL.Services.Interface;
 using DAL.UnitOfWork;
+using Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,5 +13,26 @@ namespace BLL.Services
 {
     public class ComandasService(IMapper mapper, IUnitOfWork unitOfWork) : AbstractServices(mapper, unitOfWork), IComandasService
     {
+        public async Task<bool> CrearComanda(ComandaDTO comanda)
+        {
+            var nuevaComanda = _mapper.Map<Comandas>(comanda);
+            await _unitOfWork.ComandasRepository.Create(nuevaComanda);
+            await _unitOfWork.Save();
+            return true;
+        }
+
+        public async Task<bool> EliminarComanda(int id)
+        {
+            var comanda = await _unitOfWork.ComandasRepository.GetById(id);
+            _unitOfWork.ComandasRepository.Delete(comanda);
+            await _unitOfWork.Save();
+            return true;
+        }
+
+        public async Task<ComandaDTO> ObtenerComandaPorId(int id)
+        {
+            var result = await _unitOfWork.ComandasRepository.GetById(id);
+            return _mapper.Map<ComandaDTO>(result);
+        }
     }
 }

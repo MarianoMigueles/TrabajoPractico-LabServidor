@@ -12,10 +12,12 @@ namespace DAL.Repositorios.Interfaces
     {
         Task<Empleados> ActualizarEstadoEmpleado(int idEmpleado, EEstadoEmpleado estado);
         Task<List<LogInEmpleado>> ObtenerHorarioIngreso(int idEmpleado);
-        Task<OperacionesEmpleados> ObtenerOperacionesEmpleado(int idEmpleado);
+        Task<List<OperacionesEmpleados>> ObtenerOperacionesEmpleado(int idEmpleado);
         Task<int> ObtenerOperacionesPorSector(ESectores sector);
         Task<List<OperacionesEmpleados>> ObtenerOperacionesPorEmpleadoEnSector(int idEmplead, ESectores sector);
         Task GenerarOperacion(OperacionesEmpleados operacion);
+        Task GenerarInicioSecion(LogInEmpleado empleado);
+        Task<Empleados> ObtenerEmpleadoPorNombreUsuario(string usuario);
         Task<Empleados> LogInEmpleado(string userName, string password);
     }
 }

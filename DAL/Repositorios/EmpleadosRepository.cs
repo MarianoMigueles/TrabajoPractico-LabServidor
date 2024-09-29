@@ -24,6 +24,16 @@ namespace DAL.Repositorios
             return result;
         }
 
+        public async Task<Empleados> ObtenerEmpleadoPorNombreUsuario(string usuario)
+        {
+            return await _context.Empleados.Where(x => x.Usuario.Equals(usuario)).FirstOrDefaultAsync();
+        }
+
+        public async Task GenerarInicioSecion(LogInEmpleado empleado)
+        {
+            await _context.LogIns.AddAsync(empleado);
+        }
+
         public async Task GenerarOperacion(OperacionesEmpleados operacion)
         {
             await _context.Operaciones.AddAsync(operacion);
@@ -40,9 +50,9 @@ namespace DAL.Repositorios
             return await _context.LogIns.Include(e => e.Empleado).Where(x => x.IdEmpleado == idEmpleado).ToListAsync();
         }
 
-        public async Task<OperacionesEmpleados> ObtenerOperacionesEmpleado(int idEmpleado)
+        public async Task<List<OperacionesEmpleados>> ObtenerOperacionesEmpleado(int idEmpleado)
         {
-            return await _context.Operaciones.Include(e => e.Empleado).Where(x => x.IdEmpleado == idEmpleado).FirstOrDefaultAsync();
+            return await _context.Operaciones.Include(e => e.Empleado).Where(x => x.IdEmpleado == idEmpleado).ToListAsync();
         }
 
         public async Task<List<OperacionesEmpleados>> ObtenerOperacionesPorEmpleadoEnSector(int idEmplead, ESectores sector)
@@ -55,5 +65,6 @@ namespace DAL.Repositorios
             var result = await _context.Operaciones.Include(e => e.Empleado).Where(x => x.Sector == sector).CountAsync();
             return result;
         }
+
     }
 }

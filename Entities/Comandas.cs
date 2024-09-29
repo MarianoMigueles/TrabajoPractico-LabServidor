@@ -9,7 +9,10 @@ namespace Entities
         [Required]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int IdComandas {  get; set; }
+
+        [ForeignKey(nameof(Mesa))]
         public int IdMesa { get; set; }
+        public Mesas Mesa { get; set; }
         public string NombreCliente { get; set; }
     }
 }

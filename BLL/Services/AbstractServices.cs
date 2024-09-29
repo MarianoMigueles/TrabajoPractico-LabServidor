@@ -16,10 +16,5 @@ namespace BLL.Services
         protected readonly IUnitOfWork _unitOfWork = unitOfWork;
         protected readonly IMapper _mapper = mapper;
 
-        //public abstract Task Create(int id);
-        //public abstract Task GetbyId(int id);
-        //public abstract Task GetAll(int id);
-        //public abstract Task Update(int id);
-        //public abstract Task Delete(int id);
     }
 }

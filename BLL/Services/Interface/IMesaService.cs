@@ -1,4 +1,5 @@
-﻿using BLL.DTO.Mesas;
+﻿using BLL.DTO.Empleados;
+using BLL.DTO.Mesas;
 using Entities.Enums;
 using System;
 using System.Collections.Generic;
@@ -12,5 +13,8 @@ namespace BLL.Services.Interface
     {
         Task<MesaDTO> CambiarEstado(int idMesa, EEstadoMesa estadoMesa);
         Task<MesaDTO> CerrarMesa(int idMesa);
+        Task<bool> CrearMesa(MesaDTO mesa);
+        Task<MesaDTO> ObtenerMesaPorId(int id);
+        Task<bool> EliminarMesa(int id);
     }
 }

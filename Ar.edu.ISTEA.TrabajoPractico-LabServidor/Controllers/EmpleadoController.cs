@@ -2,6 +2,7 @@
 using BLL.Services.Interface;
 using Entities;
 using Entities.Enums;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
@@ -12,6 +13,7 @@ using System.Text;
 namespace Ar.edu.ISTEA.TrabajoPractico_LabServidor.Controllers
 {
     [Route("api/[controller]")]
+    [Authorize]
     [ApiController]
     public class EmpleadoController : Controller
     {
@@ -24,7 +26,7 @@ namespace Ar.edu.ISTEA.TrabajoPractico_LabServidor.Controllers
             _configuration = configuration;
         }
 
-
+        [AllowAnonymous]
         [HttpPost("LogInEmpleado")]
         public async Task<ActionResult<object>> LogInEmpleado(EmpleadoLogInRequestDTO logInRequestDTO)
         {
@@ -37,8 +39,8 @@ namespace Ar.edu.ISTEA.TrabajoPractico_LabServidor.Controllers
                     new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                     new Claim(JwtRegisteredClaimNames.Iat, DateTime.UtcNow.ToString()),
                     new Claim("Usuario", userEntity.Usuario),
-                    new Claim("Nombre", userEntity.Nombre)
-
+                    new Claim("Nombre", userEntity.Nombre),
+                    new Claim("Sector", userEntity.Sector.ToString())
                 };
                 var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
                 var signIn = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
