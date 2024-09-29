@@ -17,5 +17,31 @@ namespace Entities
         public int IdMesa {  get; set; }
         public string Nombre { get; set; }
         public EEstadoMesa EstadoMesa { get; set; }
+
+        public void CambiarEstado(EEstadoMesa estadoMesa)
+        {
+            if(this.EstadoMesa == estadoMesa)
+            {
+                throw new Exception("La mesa ya se encuentra en ese estado");
+            }
+
+
+            if(this.EstadoMesa == EEstadoMesa.Cerrada)
+            {
+                throw new Exception("No se puede cambiar el estado de la mesa ya que se encuentra cerrada");
+            }
+
+            this.EstadoMesa = estadoMesa;
+        }
+
+        public void CerrarMesa()
+        {
+            if(this.EstadoMesa == EEstadoMesa.Cerrada)
+            {
+                throw new Exception("La mesa ya se encuentra cerrada");
+            }
+
+            this.EstadoMesa = EEstadoMesa.Cerrada;
+        }
     }
 }

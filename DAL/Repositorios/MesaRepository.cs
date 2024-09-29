@@ -11,23 +11,19 @@ using System.Threading.Tasks;
 
 namespace DAL.Repositorios
 {
-    public class MesaRepository : Repository<Mesas>, IMesaRepository
+    public class MesaRepository(DataContext context) : Repository<Mesas>(context), IMesaRepository
     {
-        public MesaRepository(DataContext context) : base(context)
-        {
-        }
-
         public async Task<Mesas> CambiarEstado(int idMesa, EEstadoMesa estadoMesa)
         {
             Mesas mesa = await this.GetById(idMesa) ?? throw new Exception("La mesa no fue encontrada");
-            mesa.EstadoMesa = estadoMesa;
+            mesa.CambiarEstado(estadoMesa);
             return mesa;
         }
 
         public async Task<Mesas> CerrarMesa(int idMesa)
         {
             var mesa = await this.GetById(idMesa) ?? throw new Exception("La mesa no fue encontrada");
-            mesa.EstadoMesa = EEstadoMesa.Cerrada;
+            mesa.CerrarMesa();
             return mesa;
         }
 

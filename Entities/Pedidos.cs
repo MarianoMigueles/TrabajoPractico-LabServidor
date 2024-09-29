@@ -45,7 +45,17 @@ namespace Entities
 
         public void CambiarEstado(EEstadoPedido estado)
         {
-            if(this.EstadoPedido == EEstadoPedido.ListoParaServir)
+            if ((int)this.EstadoPedido < (int)estado)
+            {
+                throw new Exception("No se puede cambiar el estado a uno anterior.");
+            }
+
+            if (estado == this.EstadoPedido)
+            {
+                throw new Exception("El pedido ya se encuentra en este estado.");
+            }
+
+            if (this.EstadoPedido == EEstadoPedido.ListoParaServir)
             {
                 this.FechaFinalizacion = DateTime.Now;
 
