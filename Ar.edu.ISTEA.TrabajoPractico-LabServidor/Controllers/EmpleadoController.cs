@@ -59,6 +59,27 @@ namespace Ar.edu.ISTEA.TrabajoPractico_LabServidor.Controllers
 
 
 
+        [HttpPost("CrearEmpleado")]
+        public async Task<ActionResult<bool>> CrearEmpleado(EmpleadoDTO empleado)
+        {
+            var result = await _empleadoService.CrearEmpleado(empleado);
+            return Ok(result);
+        }
+
+        [HttpDelete("EliminarEmpleado{id}")]
+        public async Task<ActionResult<bool>> EliminarEmpleado(int id)
+        {
+            var result = await _empleadoService.EliminarEmpleado(id);
+            return Ok(result);
+        }
+
+        [HttpGet("ObtenerEmpleadoPorId{id}")]
+        public async Task<ActionResult<EmpleadoDTO>> ObtenerEmpleadoPorId(int id)
+        {
+            var result = await _empleadoService.ObtenerEmpleadoPorId(id);
+            return Ok(result);
+        }
+
         [HttpPatch("ActualizarEstadoEmpleado")]
         public async Task<ActionResult<EmpleadoDTO>> ActualizarEstadoEmpleado(int idEmpleado, string estado)
         {

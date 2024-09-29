@@ -18,6 +18,27 @@ namespace Ar.edu.ISTEA.TrabajoPractico_LabServidor.Controllers
             _mesaService = mesaService;
         }
 
+        [HttpPost("CrearMesa")]
+        public async Task<ActionResult<bool>> CrearMesa(MesaDTO mesa)
+        {
+            var result = await _mesaService.CrearMesa(mesa);
+            return Ok(result);
+        }
+
+        [HttpDelete("EliminarMesa")]
+        public async Task<ActionResult<bool>> EliminarMesa(int id)
+        {
+            var result = await _mesaService.EliminarMesa(id);
+            return Ok(result);
+        }
+
+        [HttpGet("ObtenerMesaPorId")]
+        public async Task<ActionResult<MesaDTO>> ObtenerMesaPorId(int id)
+        {
+            var result = await _mesaService.ObtenerMesaPorId(id);
+            return Ok(result);
+        }
+
         [HttpPatch("CambiarEstado")]
         public async Task<ActionResult<MesaDTO>> CambiarEstado(int idMesa, EEstadoMesa estadoMesa)
         {

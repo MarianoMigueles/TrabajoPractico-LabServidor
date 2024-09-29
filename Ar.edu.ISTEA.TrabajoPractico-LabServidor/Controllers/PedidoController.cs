@@ -18,6 +18,20 @@ namespace Ar.edu.ISTEA.TrabajoPractico_LabServidor.Controllers
             _pedidoService = pedidoService;
         }
 
+        [HttpPost("CrearPedido")]
+        public async Task<ActionResult<bool>> CrearPedido(PedidosDTO pedido)
+        {
+            var result = await _pedidoService.CrearPedido(pedido);
+            return Ok(result);
+        }
+
+        [HttpGet("ConsultarEstadoPedido")]
+        public async Task<ActionResult<PedidosDTO>> ConsultarEstadoPedido(int id)
+        {
+            var result = await _pedidoService.ConsultarEstadoPedido(id);
+            return Ok(result);
+        }
+
         [HttpPatch("CambiarEstado")]
         public async Task<ActionResult<PedidosDTO>> CambiarEstado(int idPedido, EEstadoPedido estado)
         {
