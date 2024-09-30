@@ -35,10 +35,10 @@ namespace Entities
                 throw new InvalidOperationException("La cantidad a reducir debe ser mayor que cero.");
             }
 
-            //if (Stock - cantidad < 0)
-            //{
+            if (Stock - cantidad < 0)
+            {
                 throw new InvalidOperationException($"No se pudo reducir el stock. La cantidad disponible ({this._Stock}) es insuficiente para cubrir la cantidad solicitada ({cantidad}).");
-            //}
+            }
 
             this.Stock -= cantidad;
         }
