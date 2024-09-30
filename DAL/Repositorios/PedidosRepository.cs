@@ -28,7 +28,7 @@ namespace DAL.Repositorios
         public async Task<DateTime> ObtenerTiempoEstimadoPedidoDePreparacion(int idPedido)
         {
             var result = await this.GetById(idPedido);
-            return result.TiempoEstimadoFinalizacion;
+            return (DateTime)result.TiempoEstimadoFinalizacion;
         }
 
         public async Task<Pedidos> PonerPedidoEnPreparacion(int idPedido, DateTime tiempoEstimado)

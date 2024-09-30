@@ -17,7 +17,7 @@ namespace BLL.Services.Interface
         Task<DateTime> ObtenerTiempoEstimadoPedidoDePreparacion(int idPedido);
         Task<PedidosDTO> PonerPedidoEnPreparacion(int idPedido, DateTime tiempoEstimado);
         Task<List<PedidosDTO>> ObtenerPedidosPendientes();
-        Task<bool> CrearPedido(PedidoCreateRequestDTO pedido);
+        Task<bool> CrearPedido(int idComanda, int idProducto, int cantidad);
         Task<PedidosDTO> ConsultarEstadoPedido(int id);
     }
 }

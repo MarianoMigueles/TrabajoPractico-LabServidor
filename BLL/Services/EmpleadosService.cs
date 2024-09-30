@@ -5,6 +5,7 @@ using BLL.Services.Interface;
 using DAL.UnitOfWork;
 using Entities;
 using Entities.Enums;
+using Exeptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,26 +16,29 @@ namespace BLL.Services
 {
     public class EmpleadosService(IMapper mapper, IUnitOfWork unitOfWork) : AbstractServices(mapper, unitOfWork), IEmpleadosService
     {
-        public async Task<EmpleadoDTO> ActualizarEstadoEmpleado(int idEmpleado, string estado)
+        public async Task<EmpleadoDTO> ActualizarEstadoEmpleado(int idEmpleado, EEstadoEmpleado estado)
         {
-            if (Enum.TryParse<EEstadoEmpleado>(estado, out var estadoEmpleado))
-            {
-                var result = await _unitOfWork.EmpleadosRepository.ActualizarEstadoEmpleado(idEmpleado, estadoEmpleado);
-                await _unitOfWork.Save();
-                return _mapper.Map<EmpleadoDTO>(result);
-            }
-            else
-            {
-                throw new Exception("El estado entregado no coincide con ningun estado permitido.");
-            }
+            var result = await _unitOfWork.EmpleadosRepository.ActualizarEstadoEmpleado(idEmpleado, estado);
+            await _unitOfWork.Save();
+            return _mapper.Map<EmpleadoDTO>(result);
+
         }
 
-        public async Task<bool> CrearEmpleado(EmpleadoCreateRequestDTO empleado)
+        public async Task<bool> CrearEmpleado(string nombre, string usuario, string password, ESectores sector, ERoles rol)
         {
-            var validation = await _unitOfWork.EmpleadosRepository.ObtenerEmpleadoPorNombreUsuario(empleado.Usuario);
+            var validation = await _unitOfWork.EmpleadosRepository.ObtenerEmpleadoPorNombreUsuario(usuario);
 
             if(validation == null)
             {
+                EmpleadoCreateRequestDTO empleado = new()
+                {
+                    Nombre = nombre,
+                    Usuario = usuario,
+                    Password = password,
+                    Sector = sector,
+                    Rol = rol
+                };
+
                 var nuevoEmpleado = _mapper.Map<Empleados>(empleado);
                 await _unitOfWork.EmpleadosRepository.Create(nuevoEmpleado);
                 await _unitOfWork.Save();
@@ -42,7 +46,7 @@ namespace BLL.Services
             }
             else
             {
-                throw new InvalidOperationException("El usuario espesificado ya se encuentra registrado, intente con algo diferente");
+                throw new EntityAlreadyExistsException($"El usuario {usuario} ya se encuentra registrado, intente con un usuario diferente.");
             }
 
             

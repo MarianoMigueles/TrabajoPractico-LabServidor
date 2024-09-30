@@ -13,7 +13,7 @@ namespace BLL.Services.Interface
     {
         Task<MesaDTO> CambiarEstado(int idMesa, EEstadoMesa estadoMesa);
         Task<MesaDTO> CerrarMesa(int idMesa);
-        Task<bool> CrearMesa(MesaDTO mesa);
+        Task<bool> CrearMesa(string nombreMesa);
         Task<MesaDTO> ObtenerMesaPorId(int id);
         Task<bool> EliminarMesa(int id);
     }

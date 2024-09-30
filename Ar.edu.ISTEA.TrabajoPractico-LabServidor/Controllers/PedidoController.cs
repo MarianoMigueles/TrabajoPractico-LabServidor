@@ -3,6 +3,7 @@ using BLL.DTO.Pedidos;
 using BLL.Services.Interface;
 using Entities;
 using Entities.Enums;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -19,10 +20,11 @@ namespace Ar.edu.ISTEA.TrabajoPractico_LabServidor.Controllers
             _pedidoService = pedidoService;
         }
 
+        [Authorize(policy: "Mozos")]
         [HttpPost("CrearPedido")]
-        public async Task<ActionResult<bool>> CrearPedido(PedidoCreateRequestDTO pedido)
+        public async Task<ActionResult<bool>> CrearPedido(int idComanda, int idProducto, int cantidad)
         {
-            var result = await _pedidoService.CrearPedido(pedido);
+            var result = await _pedidoService.CrearPedido(idComanda, idProducto, cantidad);
             return Ok(result);
         }
 
@@ -40,6 +42,7 @@ namespace Ar.edu.ISTEA.TrabajoPractico_LabServidor.Controllers
             return Ok(result);
         }
 
+        [Authorize(policy: "Admin")]
         [HttpGet("ObtenerPedidosFueraDeTiempo")]
         public async Task<ActionResult<List<PedidosDTO>>> ObtenerPedidosFueraDeTiempo()
         {

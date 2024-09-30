@@ -13,8 +13,14 @@ namespace BLL.Services
 {
     public class ComandasService(IMapper mapper, IUnitOfWork unitOfWork) : AbstractServices(mapper, unitOfWork), IComandasService
     {
-        public async Task<bool> CrearComanda(ComandaDTO comanda)
+        public async Task<bool> CrearComanda(int idMesa, string nombreCliente)
         {
+            ComandaDTO comanda = new()
+            {
+                IdMesa = idMesa,
+                NombreCliente = nombreCliente
+            };
+
             var nuevaComanda = _mapper.Map<Comandas>(comanda);
             await _unitOfWork.ComandasRepository.Create(nuevaComanda);
             await _unitOfWork.Save();

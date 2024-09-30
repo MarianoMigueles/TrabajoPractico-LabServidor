@@ -12,7 +12,7 @@ namespace BLL.Services.Interface
 {
     public interface IEmpleadosService
     {
-        Task<EmpleadoDTO> ActualizarEstadoEmpleado(int idEmpleado, string estado);
+        Task<EmpleadoDTO> ActualizarEstadoEmpleado(int idEmpleado, EEstadoEmpleado estado);
         Task<List<EmpleadoLogInDTO>> ObtenerHorarioIngreso(int idEmpleado);
         Task<List<OperacionesEmpleadoDTO>> ObtenerOperacionesEmpleado(int idEmpleado);
         Task<int> ObtenerOperacionesPorSector(ESectores sector);
@@ -20,7 +20,7 @@ namespace BLL.Services.Interface
         Task GenerarOperacion(string usuario, string sector, string descripcion);
         Task GenerarInicioSecion(string usuario);
         Task<EmpleadoDTO> LogInEmpleado(string userName, string password);
-        Task<bool> CrearEmpleado(EmpleadoCreateRequestDTO empleado);
+        Task<bool> CrearEmpleado(string nombre, string usuario, string password, ESectores sector, ERoles rol);
         Task<EmpleadoDTO> ObtenerEmpleadoPorId(int id);
         Task<bool> EliminarEmpleado(int id);
     }

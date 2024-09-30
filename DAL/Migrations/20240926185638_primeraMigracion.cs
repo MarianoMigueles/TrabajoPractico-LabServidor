@@ -35,7 +35,7 @@ namespace DAL.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Nombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Usuario = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Passsword = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Sector = table.Column<int>(type: "int", nullable: false),
                     Rol = table.Column<int>(type: "int", nullable: false),
                     Estado = table.Column<int>(type: "int", nullable: false)
@@ -162,7 +162,7 @@ namespace DAL.Migrations
 
             migrationBuilder.InsertData(
                 table: "Empleados",
-                columns: new[] { "IdEmpleados", "Estado", "Nombre", "Passsword", "Rol", "Sector", "Usuario" },
+                columns: new[] { "IdEmpleados", "Estado", "Nombre", "Password", "Rol", "Sector", "Usuario" },
                 values: new object[,]
                 {
                     { 1, 0, "Ana Torres", "password1", 0, 0, "atorres" },

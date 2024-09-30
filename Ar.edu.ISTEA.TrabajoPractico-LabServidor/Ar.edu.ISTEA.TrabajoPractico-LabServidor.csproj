@@ -29,6 +29,7 @@
     <ProjectReference Include="..\BLL\BLL.csproj" />
     <ProjectReference Include="..\DAL\DAL.csproj" />
     <ProjectReference Include="..\Entities\Entities.csproj" />
+    <ProjectReference Include="..\Exeptions\Exceptions.csproj" />
   </ItemGroup>
 
 </Project>

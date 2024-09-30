@@ -17,7 +17,7 @@ namespace Entities
         public int IdEmpleados {  get; set; }
         public string Nombre { get; set; }
         public string Usuario { get; set; }
-        public string Passsword { get; set; }
+        public string Password { get; set; }
 
         public ESectores Sector { get; set; }
         public ERoles Rol { get; set; }

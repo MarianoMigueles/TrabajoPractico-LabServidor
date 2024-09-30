@@ -9,7 +9,7 @@ namespace BLL.Services.Interface
 {
     public interface IComandasService
     {
-        Task<bool> CrearComanda(ComandaDTO comanda);
+        Task<bool> CrearComanda(int idMesa, string nombreCliente);
         Task<ComandaDTO> ObtenerComandaPorId(int id);
         Task<bool> EliminarComanda(int id);
     }

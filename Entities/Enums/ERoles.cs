@@ -14,6 +14,7 @@ namespace Entities.Enums
         Cerveceros,
         Cocineros,
         Mozos,
-        Socios
+        Socios,
+        Admin
     }
 }

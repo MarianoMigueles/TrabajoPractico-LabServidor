@@ -10,10 +10,10 @@ namespace BLL.DTO.Pedidos
     public class PedidoCreateRequestDTO
     {
         [Required]
-        public int IdComandas { get; set; }
+        public int IdProducto { get; set; }
 
         [Required]
-        public int IdProducto { get; set; }
+        public int IdComanda { get; set; }
 
         [Required]
         public int Cantidad { get; set; }

@@ -3,6 +3,7 @@ using BLL.DTO.Productos;
 using BLL.Services.Interface;
 using DAL.UnitOfWork;
 using Entities;
+using Entities.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,8 +14,16 @@ namespace BLL.Services
 {
     public class ProductosService(IMapper mapper, IUnitOfWork unitOfWork) : AbstractServices(mapper, unitOfWork), IProductosService
     {
-        public async Task<bool> CrearProducto(ProductoDTO producto)
+        public async Task<bool> CrearProducto(string Descripcion, int Stock, int Precio, ESectores sector)
         {
+            ProductoDTO producto = new()
+            {
+                Descripcion = Descripcion,
+                Stock = Stock,
+                Precio = Precio,
+                Sector = sector
+            };
+
             var nuevoProducto = _mapper.Map<Productos>(producto);
             await _unitOfWork.ProductosRepository.Create(nuevoProducto);
             await _unitOfWork.Save();

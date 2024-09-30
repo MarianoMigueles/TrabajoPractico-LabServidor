@@ -2,6 +2,7 @@
 using BLL.Services.Interface;
 using Entities;
 using Entities.Enums;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,13 +19,15 @@ namespace Ar.edu.ISTEA.TrabajoPractico_LabServidor.Controllers
             _mesaService = mesaService;
         }
 
+        [Authorize(policy: "Admin")]
         [HttpPost("CrearMesa")]
-        public async Task<ActionResult<bool>> CrearMesa(MesaDTO mesa)
+        public async Task<ActionResult<bool>> CrearMesa(string nombreMesa)
         {
-            var result = await _mesaService.CrearMesa(mesa);
+            var result = await _mesaService.CrearMesa(nombreMesa);
             return Ok(result);
         }
 
+        [Authorize(policy: "Admin")]
         [HttpDelete("EliminarMesa")]
         public async Task<ActionResult<bool>> EliminarMesa(int id)
         {
@@ -32,6 +35,7 @@ namespace Ar.edu.ISTEA.TrabajoPractico_LabServidor.Controllers
             return Ok(result);
         }
 
+        [Authorize(policy: "Admin")]
         [HttpGet("ObtenerMesaPorId")]
         public async Task<ActionResult<MesaDTO>> ObtenerMesaPorId(int id)
         {
@@ -39,6 +43,7 @@ namespace Ar.edu.ISTEA.TrabajoPractico_LabServidor.Controllers
             return Ok(result);
         }
 
+        [Authorize(policy: "Mozos")]
         [HttpPatch("CambiarEstado")]
         public async Task<ActionResult<MesaDTO>> CambiarEstado(int idMesa, EEstadoMesa estadoMesa)
         {
@@ -46,6 +51,7 @@ namespace Ar.edu.ISTEA.TrabajoPractico_LabServidor.Controllers
             return Ok(result);
         }
 
+        [Authorize(policy: "Socio")]
         [HttpPatch("CerrarMesa")]
         public async Task<ActionResult<MesaDTO>> CerrarMesa(int idMesa)
         {

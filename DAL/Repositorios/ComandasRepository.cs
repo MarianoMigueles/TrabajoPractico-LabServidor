@@ -10,12 +10,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Repositorios
 {
-    public class ComandasRepository : Repository<Comandas>, IComandasRepository
+    public class ComandasRepository(DataContext context) : Repository<Comandas>(context), IComandasRepository
     {
-        public ComandasRepository(DataContext context) : base(context)
-        {
-
-        }
-
     }
 }

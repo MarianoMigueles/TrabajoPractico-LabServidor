@@ -2,6 +2,7 @@
 using DAL.Repositorios.Interfaces;
 using Entities;
 using Entities.Enums;
+using Exeptions;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -11,12 +12,8 @@ using System.Threading.Tasks;
 
 namespace DAL.Repositorios
 {
-    public class EmpleadosRepository : Repository<Empleados>, IEmpleadosRepository
+    public class EmpleadosRepository(DataContext context) : Repository<Empleados>(context), IEmpleadosRepository
     {
-        public EmpleadosRepository(DataContext context) : base(context)
-        {
-        }
-
         public async Task<Empleados> ActualizarEstadoEmpleado(int idEmpleado, EEstadoEmpleado estado)
         {
             var result = await this.GetById(idEmpleado);
@@ -41,8 +38,8 @@ namespace DAL.Repositorios
 
         public async Task<Empleados> LogInEmpleado(string userName, string password)
         {
-            var user = await _context.Empleados.Where(x => x.Usuario == userName && x.Passsword == password).FirstOrDefaultAsync();
-            return user;
+            var user = await _context.Empleados.Where(x => x.Usuario == userName && x.Password == password).FirstOrDefaultAsync();
+            return user?? throw new EntityNotFoundException($"El nombre de usuario o la contraseña no son validos.");
         }
 
         public async Task<List<LogInEmpleado>> ObtenerHorarioIngreso(int idEmpleado)

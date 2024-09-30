@@ -1,5 +1,6 @@
 ﻿using BLL.DTO.Productos;
 using Entities;
+using Entities.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,7 @@ namespace BLL.Services.Interface
     {
         Task<ProductoDTO> MasVendido();
         Task<ProductoDTO> MenosVendido();
-        Task<bool> CrearProducto(ProductoDTO producto);
+        Task<bool> CrearProducto(string Descripcion, int Stock, int Precio, ESectores sector);
         Task<bool> EliminarProducto(int id);
         Task<ProductoDTO> ObtenerProductoPorId(int id);
         Task ReducirStock(int idProducto, int stock);

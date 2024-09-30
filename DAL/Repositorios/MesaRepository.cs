@@ -2,6 +2,7 @@
 using DAL.Repositorios.Interfaces;
 using Entities;
 using Entities.Enums;
+using Exeptions;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -15,14 +16,14 @@ namespace DAL.Repositorios
     {
         public async Task<Mesas> CambiarEstado(int idMesa, EEstadoMesa estadoMesa)
         {
-            Mesas mesa = await this.GetById(idMesa) ?? throw new Exception("La mesa no fue encontrada");
+            Mesas mesa = await this.GetById(idMesa) ?? throw new EntityNotFoundException($"La mesa con el id {idMesa} no fue encontrada.");
             mesa.CambiarEstado(estadoMesa);
             return mesa;
         }
 
         public async Task<Mesas> CerrarMesa(int idMesa)
         {
-            var mesa = await this.GetById(idMesa) ?? throw new Exception("La mesa no fue encontrada");
+            var mesa = await this.GetById(idMesa) ?? throw new EntityNotFoundException($"La mesa con el id {idMesa} no fue encontrada.");
             mesa.CerrarMesa();
             return mesa;
         }

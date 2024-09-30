@@ -115,6 +115,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseMiddleware<HandlerExeptionsMiddleware>();
 app.UseMiddleware<LogInMiddleware>();
 app.UseMiddleware<OperacionesMiddleware>();
 

@@ -2,6 +2,7 @@
 using BLL.Services;
 using BLL.Services.Interface;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System.IdentityModel.Tokens.Jwt;
 using System.Text;
 
@@ -18,6 +19,32 @@ namespace Ar.edu.ISTEA.TrabajoPractico_LabServidor.Middlewares
             _next = next;
             _scopeFactory = scopeFactory;
             _logger = logger;
+        }
+
+        private static bool ValidarToken(HttpContext context, out JwtSecurityToken jwtToken)
+        {
+            jwtToken = null;
+            var authHeader = context.Request.Headers["Authorization"].ToString();
+
+            if (!string.IsNullOrEmpty(authHeader) && authHeader.StartsWith("Bearer "))
+            {
+                var token = authHeader.Substring("Bearer ".Length).Trim();
+                var tokenHandler = new JwtSecurityTokenHandler();
+
+                try
+                {
+                    jwtToken = tokenHandler.ReadJwtToken(token);
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    throw new InvalidOperationException($"Error al validar el token: {ex.Message}");
+                }
+            }
+            else
+            {
+                throw new UnauthorizedAccessException("Error, no se encontró ningún token de autorización");
+            }
         }
 
         protected async Task<string> ObtenerUsuarioEmpleadoEnBody(HttpContext context)
@@ -39,44 +66,30 @@ namespace Ar.edu.ISTEA.TrabajoPractico_LabServidor.Middlewares
 
         protected string[] ObtenerEmpleadoEnJWT(HttpContext context)
         {
-            var authHeader = context.Request.Headers["Authorization"].ToString();
-
-            if (!string.IsNullOrEmpty(authHeader) && authHeader.StartsWith("Bearer "))
+            if (ValidarToken(context, out var jwtToken))
             {
-                var token = authHeader.Substring("Bearer ".Length).Trim();
-                var tokenHandler = new JwtSecurityTokenHandler();
+                return ObtenerEmpleadoEnJWT(jwtToken);
+            }
+            return null;
+        }
 
-                try
-                {
-                    var jwtToken = tokenHandler.ReadJwtToken(token);
+        private static string[] ObtenerEmpleadoEnJWT(JwtSecurityToken jwtToken)
+        {
+            var usuarioClaim = jwtToken.Claims.FirstOrDefault(c => c.Type == "Usuario");
+            var nombreClaim = jwtToken.Claims.FirstOrDefault(c => c.Type == "Nombre");
+            var sectorClaim = jwtToken.Claims.FirstOrDefault(c => c.Type == "Sector");
 
-                    var usuarioClaim = jwtToken.Claims.FirstOrDefault(c => c.Type == "Usuario");
-                    var nombreClaim = jwtToken.Claims.FirstOrDefault(c => c.Type == "Nombre");
-                    var sectorClaim = jwtToken.Claims.FirstOrDefault(c => c.Type == "Sector");
+            var usuario = usuarioClaim?.Value;
+            var nombre = nombreClaim?.Value;
+            var sector = sectorClaim?.Value;
 
-                    var usuario = usuarioClaim?.Value;
-                    var nombre = nombreClaim?.Value;
-                    var sector = sectorClaim?.Value;
-
-                    if (usuario != null && nombre != null && sector != null)
-                    {
-                        return [usuario, nombre, sector];
-                    } 
-                    else
-                    {
-                        return null;
-                    }
-
-                   
-                }
-                catch (Exception ex)
-                {
-                    throw new Exception($"Error al decodificar el token: {ex.Message}");
-                }
+            if (usuario != null && nombre != null && sector != null)
+            {
+                return [usuario, nombre, sector];
             }
             else
             {
-                throw new Exception("Error, no se encontro ningun token de autorizacion");
+                return null;
             }
         }
     }

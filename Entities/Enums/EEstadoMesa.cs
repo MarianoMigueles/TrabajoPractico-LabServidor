@@ -10,6 +10,7 @@ namespace Entities.Enums
 {
     public enum EEstadoMesa
     {
+        MesaVacia,
         ClienteEsperandoPedido,
         ClienteComiendo,
         ClientePagando,

@@ -28,9 +28,9 @@ namespace Ar.edu.ISTEA.TrabajoPractico_LabServidor.Controllers
 
         [AllowAnonymous]
         [HttpPost("LogInEmpleado")]
-        public async Task<ActionResult<object>> LogInEmpleado(EmpleadoLogInRequestDTO logInRequestDTO)
+        public async Task<ActionResult<object>> LogInEmpleado(string usuario, string password)
         {
-            var userEntity = await _empleadoService.LogInEmpleado(logInRequestDTO.Usuario, logInRequestDTO.Password);
+            var userEntity = await _empleadoService.LogInEmpleado(usuario, password);
             if (userEntity != null)
             {
                 var claims = new[]
@@ -40,7 +40,8 @@ namespace Ar.edu.ISTEA.TrabajoPractico_LabServidor.Controllers
                     new Claim(JwtRegisteredClaimNames.Iat, DateTime.UtcNow.ToString()),
                     new Claim("Usuario", userEntity.Usuario),
                     new Claim("Nombre", userEntity.Nombre),
-                    new Claim("Sector", userEntity.Sector.ToString())
+                    new Claim("Sector", userEntity.Sector.ToString()),
+                    new Claim("Rol", userEntity.Rol.ToString())
                 };
                 var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
                 var signIn = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
@@ -57,15 +58,15 @@ namespace Ar.edu.ISTEA.TrabajoPractico_LabServidor.Controllers
                 return BadRequest();
         }
 
-
-
+        [Authorize(policy: "Admin")]
         [HttpPost("CrearEmpleado")]
-        public async Task<ActionResult<bool>> CrearEmpleado(EmpleadoCreateRequestDTO empleado)
+        public async Task<ActionResult<bool>> CrearEmpleado(string nombre, string usuario, string password, ESectores sector, ERoles rol)
         {
-            var result = await _empleadoService.CrearEmpleado(empleado);
+            var result = await _empleadoService.CrearEmpleado(nombre, usuario, password, sector, rol);
             return Ok(result);
         }
 
+        [Authorize(policy: "Admin")]
         [HttpDelete("EliminarEmpleado{id}")]
         public async Task<ActionResult<bool>> EliminarEmpleado(int id)
         {
@@ -73,6 +74,7 @@ namespace Ar.edu.ISTEA.TrabajoPractico_LabServidor.Controllers
             return Ok(result);
         }
 
+        [Authorize(policy: "Admin")]
         [HttpGet("ObtenerEmpleadoPorId{id}")]
         public async Task<ActionResult<EmpleadoDTO>> ObtenerEmpleadoPorId(int id)
         {
@@ -80,13 +82,15 @@ namespace Ar.edu.ISTEA.TrabajoPractico_LabServidor.Controllers
             return Ok(result);
         }
 
+        [Authorize(policy: "Admin")]
         [HttpPatch("ActualizarEstadoEmpleado")]
-        public async Task<ActionResult<EmpleadoDTO>> ActualizarEstadoEmpleado(int idEmpleado, string estado)
+        public async Task<ActionResult<EmpleadoDTO>> ActualizarEstadoEmpleado(int idEmpleado, EEstadoEmpleado estado)
         {
             var result = await _empleadoService.ActualizarEstadoEmpleado(idEmpleado, estado);
             return Ok(result);
         }
 
+        [Authorize(policy: "Admin")]
         [HttpGet("ObtenerHorarioIngreso")]
         public async Task<ActionResult<List<EmpleadoLogInDTO>>> ObtenerHorarioIngreso(int idEmpleado)
         {
@@ -94,6 +98,7 @@ namespace Ar.edu.ISTEA.TrabajoPractico_LabServidor.Controllers
             return Ok(result);
         }
 
+        [Authorize(policy: "Admin")]
         [HttpGet("ObtenerOperacionesEmpleado")]
         public async Task<ActionResult<OperacionesEmpleadoDTO>> ObtenerOperacionesEmpleado(int idEmpleado)
         {
@@ -101,6 +106,7 @@ namespace Ar.edu.ISTEA.TrabajoPractico_LabServidor.Controllers
             return Ok(result);
         }
 
+        [Authorize(policy: "Admin")]
         [HttpGet("ObtenerOperacionesPorEmpleadoEnSector")]
         public async Task<ActionResult<List<OperacionesEmpleadoDTO>>> ObtenerOperacionesPorEmpleadoEnSector(int idEmpleado, ESectores sector)
         {
@@ -108,6 +114,7 @@ namespace Ar.edu.ISTEA.TrabajoPractico_LabServidor.Controllers
             return Ok(result);
         }
 
+        [Authorize(policy: "Admin")]
         [HttpGet("ObtenerOperacionesPorSector")]
         public async Task<ActionResult<int>> ObtenerOperacionesPorSector(ESectores sector)
         {

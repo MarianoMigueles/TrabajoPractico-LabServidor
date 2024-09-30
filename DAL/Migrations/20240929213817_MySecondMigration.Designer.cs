@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DAL.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240926185638_primeraMigracion")]
-    partial class primeraMigracion
+    [Migration("20240929213817_MySecondMigration")]
+    partial class MySecondMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -41,6 +41,8 @@ namespace DAL.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("IdComandas");
+
+                    b.HasIndex("IdMesa");
 
                     b.ToTable("Comandas");
 
@@ -300,7 +302,7 @@ namespace DAL.Migrations
                         {
                             Id = 1,
                             Descripcion = "Preparación de platos",
-                            FechaOperacion = new DateTime(2024, 9, 26, 15, 26, 37, 761, DateTimeKind.Local).AddTicks(5134),
+                            FechaOperacion = new DateTime(2024, 9, 29, 18, 8, 16, 634, DateTimeKind.Local).AddTicks(5382),
                             IdEmpleado = 1,
                             Sector = 2
                         },
@@ -308,7 +310,7 @@ namespace DAL.Migrations
                         {
                             Id = 2,
                             Descripcion = "Reabastecimiento de bebidas",
-                            FechaOperacion = new DateTime(2024, 9, 26, 15, 36, 37, 761, DateTimeKind.Local).AddTicks(5148),
+                            FechaOperacion = new DateTime(2024, 9, 29, 18, 18, 16, 634, DateTimeKind.Local).AddTicks(5397),
                             IdEmpleado = 2,
                             Sector = 0
                         },
@@ -316,7 +318,7 @@ namespace DAL.Migrations
                         {
                             Id = 3,
                             Descripcion = "Limpieza de utensilios",
-                            FechaOperacion = new DateTime(2024, 9, 26, 15, 51, 37, 761, DateTimeKind.Local).AddTicks(5150),
+                            FechaOperacion = new DateTime(2024, 9, 29, 18, 33, 16, 634, DateTimeKind.Local).AddTicks(5399),
                             IdEmpleado = 3,
                             Sector = 2
                         },
@@ -324,7 +326,7 @@ namespace DAL.Migrations
                         {
                             Id = 4,
                             Descripcion = "Atención al cliente",
-                            FechaOperacion = new DateTime(2024, 9, 26, 15, 56, 37, 761, DateTimeKind.Local).AddTicks(5151),
+                            FechaOperacion = new DateTime(2024, 9, 29, 18, 38, 16, 634, DateTimeKind.Local).AddTicks(5400),
                             IdEmpleado = 4,
                             Sector = 1
                         });
@@ -347,7 +349,7 @@ namespace DAL.Migrations
                     b.Property<DateTime>("FechaCreacion")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("FechaFinalizacion")
+                    b.Property<DateTime?>("FechaFinalizacion")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("IdComandas")
@@ -356,7 +358,7 @@ namespace DAL.Migrations
                     b.Property<int>("IdProducto")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("TiempoEstimadoFinalizacion")
+                    b.Property<DateTime?>("TiempoEstimadoFinalizacion")
                         .HasColumnType("datetime2");
 
                     b.HasKey("IdPedidos");
@@ -373,55 +375,55 @@ namespace DAL.Migrations
                             IdPedidos = 1,
                             Cantidad = 2,
                             EstadoPedido = 2,
-                            FechaCreacion = new DateTime(2024, 9, 26, 15, 56, 37, 761, DateTimeKind.Local).AddTicks(5260),
-                            FechaFinalizacion = new DateTime(2024, 9, 26, 16, 11, 37, 761, DateTimeKind.Local).AddTicks(5261),
+                            FechaCreacion = new DateTime(2024, 9, 29, 18, 38, 16, 634, DateTimeKind.Local).AddTicks(5510),
+                            FechaFinalizacion = new DateTime(2024, 9, 29, 18, 53, 16, 634, DateTimeKind.Local).AddTicks(5511),
                             IdComandas = 1,
                             IdProducto = 1,
-                            TiempoEstimadoFinalizacion = new DateTime(2024, 9, 26, 16, 16, 37, 761, DateTimeKind.Local).AddTicks(5262)
+                            TiempoEstimadoFinalizacion = new DateTime(2024, 9, 29, 18, 58, 16, 634, DateTimeKind.Local).AddTicks(5514)
                         },
                         new
                         {
                             IdPedidos = 2,
                             Cantidad = 1,
                             EstadoPedido = 1,
-                            FechaCreacion = new DateTime(2024, 9, 26, 15, 56, 37, 761, DateTimeKind.Local).AddTicks(5265),
-                            FechaFinalizacion = new DateTime(2024, 9, 26, 16, 6, 37, 761, DateTimeKind.Local).AddTicks(5265),
+                            FechaCreacion = new DateTime(2024, 9, 29, 18, 38, 16, 634, DateTimeKind.Local).AddTicks(5516),
+                            FechaFinalizacion = new DateTime(2024, 9, 29, 18, 48, 16, 634, DateTimeKind.Local).AddTicks(5517),
                             IdComandas = 2,
                             IdProducto = 2,
-                            TiempoEstimadoFinalizacion = new DateTime(2024, 9, 26, 16, 11, 37, 761, DateTimeKind.Local).AddTicks(5266)
+                            TiempoEstimadoFinalizacion = new DateTime(2024, 9, 29, 18, 53, 16, 634, DateTimeKind.Local).AddTicks(5517)
                         },
                         new
                         {
                             IdPedidos = 3,
                             Cantidad = 3,
                             EstadoPedido = 0,
-                            FechaCreacion = new DateTime(2024, 9, 26, 15, 56, 37, 761, DateTimeKind.Local).AddTicks(5268),
-                            FechaFinalizacion = new DateTime(2024, 9, 26, 16, 1, 37, 761, DateTimeKind.Local).AddTicks(5268),
+                            FechaCreacion = new DateTime(2024, 9, 29, 18, 38, 16, 634, DateTimeKind.Local).AddTicks(5519),
+                            FechaFinalizacion = new DateTime(2024, 9, 29, 18, 43, 16, 634, DateTimeKind.Local).AddTicks(5520),
                             IdComandas = 3,
                             IdProducto = 3,
-                            TiempoEstimadoFinalizacion = new DateTime(2024, 9, 26, 16, 6, 37, 761, DateTimeKind.Local).AddTicks(5269)
+                            TiempoEstimadoFinalizacion = new DateTime(2024, 9, 29, 18, 48, 16, 634, DateTimeKind.Local).AddTicks(5520)
                         },
                         new
                         {
                             IdPedidos = 4,
                             Cantidad = 2,
                             EstadoPedido = 4,
-                            FechaCreacion = new DateTime(2024, 9, 26, 15, 56, 37, 761, DateTimeKind.Local).AddTicks(5271),
-                            FechaFinalizacion = new DateTime(2024, 9, 26, 16, 21, 37, 761, DateTimeKind.Local).AddTicks(5272),
+                            FechaCreacion = new DateTime(2024, 9, 29, 18, 38, 16, 634, DateTimeKind.Local).AddTicks(5522),
+                            FechaFinalizacion = new DateTime(2024, 9, 29, 19, 3, 16, 634, DateTimeKind.Local).AddTicks(5523),
                             IdComandas = 4,
                             IdProducto = 4,
-                            TiempoEstimadoFinalizacion = new DateTime(2024, 9, 26, 16, 26, 37, 761, DateTimeKind.Local).AddTicks(5272)
+                            TiempoEstimadoFinalizacion = new DateTime(2024, 9, 29, 19, 8, 16, 634, DateTimeKind.Local).AddTicks(5523)
                         },
                         new
                         {
                             IdPedidos = 5,
                             Cantidad = 1,
                             EstadoPedido = 3,
-                            FechaCreacion = new DateTime(2024, 9, 26, 15, 56, 37, 761, DateTimeKind.Local).AddTicks(5274),
-                            FechaFinalizacion = new DateTime(2024, 9, 26, 16, 26, 37, 761, DateTimeKind.Local).AddTicks(5275),
+                            FechaCreacion = new DateTime(2024, 9, 29, 18, 38, 16, 634, DateTimeKind.Local).AddTicks(5525),
+                            FechaFinalizacion = new DateTime(2024, 9, 29, 19, 8, 16, 634, DateTimeKind.Local).AddTicks(5526),
                             IdComandas = 5,
                             IdProducto = 5,
-                            TiempoEstimadoFinalizacion = new DateTime(2024, 9, 26, 16, 31, 37, 761, DateTimeKind.Local).AddTicks(5276)
+                            TiempoEstimadoFinalizacion = new DateTime(2024, 9, 29, 19, 13, 16, 634, DateTimeKind.Local).AddTicks(5527)
                         });
                 });
 
@@ -491,6 +493,17 @@ namespace DAL.Migrations
                             Sector = 1,
                             Stock = 30
                         });
+                });
+
+            modelBuilder.Entity("Entities.Comandas", b =>
+                {
+                    b.HasOne("Entities.Mesas", "Mesa")
+                        .WithMany()
+                        .HasForeignKey("IdMesa")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Mesa");
                 });
 
             modelBuilder.Entity("Entities.LogInEmpleado", b =>

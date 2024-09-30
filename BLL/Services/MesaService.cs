@@ -4,6 +4,7 @@ using BLL.Services.Interface;
 using DAL.UnitOfWork;
 using Entities;
 using Entities.Enums;
+using Exeptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,11 +29,17 @@ namespace BLL.Services
             return _mapper.Map<MesaDTO>(result);
         }
 
-        public async Task<bool> CrearMesa(MesaDTO mesa)
+        public async Task<bool> CrearMesa(string nombreMesa)
         {
-            var validation = await _unitOfWork.MesaRepository.ObtenerMesaPorNombre(mesa.Nombre);
+            var validation = await _unitOfWork.MesaRepository.ObtenerMesaPorNombre(nombreMesa);
             if(validation == null)
             {
+                MesaDTO mesa = new()
+                {
+                    Nombre = nombreMesa,
+                    EstadoMesa = EEstadoMesa.MesaVacia
+                };
+
                 var nuevaMesa = _mapper.Map<Mesas>(mesa);
                 await _unitOfWork.MesaRepository.Create(nuevaMesa);
                 await _unitOfWork.Save();
@@ -40,7 +47,7 @@ namespace BLL.Services
             }
             else
             {
-                throw new InvalidOperationException("No se pudo crear la mesa ya que el nombre coincide con el nombre de una mesa ya existente");
+                throw new EntityAlreadyExistsException($"No se pudo crear la mesa '{nombreMesa}' porque ya existe una mesa con ese mismo nombre.");
             }
             
         }

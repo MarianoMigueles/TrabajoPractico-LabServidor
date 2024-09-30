@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Entities.Enums;
+using Exeptions;
 
 namespace Entities
 {
@@ -37,7 +38,7 @@ namespace Entities
             {
                 if (_estadoPedido == EEstadoPedido.Entregado)
                 {
-                    throw new Exception("No se puede cambiar el estado, ya que el pedido ya fue entregado");
+                    throw new InvalidStateException("No se puede cambiar el estado, ya que el pedido ya fue entregado");
                 }
                 _estadoPedido = value; 
             }
@@ -47,12 +48,12 @@ namespace Entities
         {
             if ((int)estado < (int)this.EstadoPedido)
             {
-                throw new Exception("No se puede cambiar el estado a uno anterior.");
+                throw new InvalidStateException("No se puede cambiar el estado a uno anterior.");
             }
 
             if (estado == this.EstadoPedido)
             {
-                throw new Exception("El pedido ya se encuentra en este estado.");
+                throw new InvalidStateException("El pedido ya se encuentra en este estado.");
             }
 
             if (this.EstadoPedido == EEstadoPedido.ListoParaServir)
@@ -72,7 +73,7 @@ namespace Entities
         {
             if (this.EstadoPedido != EEstadoPedido.Pendiente)
             {
-                throw new Exception($"No se puede asignar una fecha estimada de finalizacion al pedido ya que el pedido se encuentra {this.EstadoPedido}");
+                throw new InvalidStateException($"No se puede asignar una fecha estimada de finalizacion al pedido ya que el pedido se encuentra {this.EstadoPedido}");
             }
             else
             {

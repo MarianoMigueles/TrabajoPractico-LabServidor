@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Entities.Enums;
+using Exeptions;
 
 namespace Entities
 {
@@ -19,19 +20,21 @@ namespace Entities
         public EEstadoMesa EstadoMesa { get; set; }
 
         public void CambiarEstado(EEstadoMesa estadoMesa)
-        {         
+        {
 
-            if(this.EstadoMesa == estadoMesa)
+            if (this.EstadoMesa == estadoMesa)
             {
-                throw new InvalidOperationException("La mesa ya se encuentra en ese estado");
+                throw new InvalidStateException("La mesa ya está en el estado solicitado.");
             }
-            else if (this.EstadoMesa == EEstadoMesa.Cerrada)
+
+            if (this.EstadoMesa == EEstadoMesa.Cerrada)
             {
-                throw new InvalidOperationException("No se puede cambiar el estado de la mesa ya que se encuentra cerrada");
+                throw new InvalidStateException("No se puede cambiar el estado de una mesa que ya está cerrada.");
             }
-            else if (estadoMesa == EEstadoMesa.Cerrada)
+
+            if (estadoMesa == EEstadoMesa.Cerrada)
             {
-                throw new InvalidOperationException("Solo el administrador puede cerrar la mesa");
+                throw new UnauthorizedAccessException("Solo un administrador puede cerrar la mesa.");
             }
 
             this.EstadoMesa = estadoMesa;
@@ -41,7 +44,7 @@ namespace Entities
         {
             if(this.EstadoMesa == EEstadoMesa.Cerrada)
             {
-                throw new Exception("La mesa ya se encuentra cerrada");
+                throw new InvalidStateException("La mesa ya se encuentra cerrada");
             }
 
             this.EstadoMesa = EEstadoMesa.Cerrada;

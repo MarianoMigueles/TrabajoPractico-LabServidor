@@ -1,6 +1,7 @@
 ﻿using BLL.DTO.Productos;
 using BLL.Services.Interface;
 using Entities;
+using Entities.Enums;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -19,13 +20,15 @@ namespace Ar.edu.ISTEA.TrabajoPractico_LabServidor.Controllers
             _productosService = productosService;
         }
 
+        [Authorize(policy: "Admin")]
         [HttpPost("CrearProducto")]
-        public async Task<ActionResult<bool>> CrearProducto(ProductoDTO producto)
+        public async Task<ActionResult<bool>> CrearProducto(string descripcion, int stock, int precio, ESectores sector)
         {
-            var result = await _productosService.CrearProducto(producto);
+            var result = await _productosService.CrearProducto(descripcion, stock, precio, sector);
             return Ok(result);
         }
 
+        [Authorize(policy: "Admin")]
         [HttpDelete("EliminarProducto{id}")]
         public async Task<ActionResult<bool>> EliminarProducto(int id)
         {
@@ -54,7 +57,7 @@ namespace Ar.edu.ISTEA.TrabajoPractico_LabServidor.Controllers
             return Ok();
         }
 
-
+        [Authorize(policy: "Admin")]
         [HttpGet("MasVendido")]
         public async Task<ActionResult<ProductoDTO>> MasVendido()
         {
@@ -62,6 +65,7 @@ namespace Ar.edu.ISTEA.TrabajoPractico_LabServidor.Controllers
             return Ok(result);
         }
 
+        [Authorize(policy: "Admin")]
         [HttpGet("MenosVendido")]
         public async Task<ActionResult<ProductoDTO>> MenosVendido()
         {

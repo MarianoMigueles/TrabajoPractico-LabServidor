@@ -18,9 +18,9 @@ namespace Ar.edu.ISTEA.TrabajoPractico_LabServidor.Controllers
         }
 
         [HttpPost("CrearComanda")]
-        public async Task<ActionResult<bool>> CrearComanda(ComandaDTO comanda)
+        public async Task<ActionResult<bool>> CrearComanda(int idMesa, string nombreCliente)
         {
-            var result = await _comandasService.CrearComanda(comanda);
+            var result = await _comandasService.CrearComanda(idMesa, nombreCliente);
             return Ok(result);
         }
 
