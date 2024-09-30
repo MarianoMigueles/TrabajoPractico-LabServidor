@@ -21,7 +21,7 @@ namespace DAL.Data.DataSeed
                 new Empleados { IdEmpleados = 3, Nombre = "Pedro Ruiz", Usuario = "pruiz", Password = "password3", Estado = EEstadoEmpleado.Activo, Rol = ERoles.Mozos },
                 new Empleados { IdEmpleados = 4, Nombre = "Marta Díaz", Usuario = "mdiaz", Password = "password4", Estado = EEstadoEmpleado.Activo, Rol = ERoles.Bartender },
                 new Empleados { IdEmpleados = 5, Nombre = "Sofia Martínez", Usuario = "smartinez", Password = "password5", Estado = EEstadoEmpleado.Activo, Rol = ERoles.Socios },
-                new Empleados { IdEmpleados = 5, Nombre = "Eduardo Perez", Usuario = "eperez", Password = "password6", Estado = EEstadoEmpleado.Activo, Rol = ERoles.Admin }
+                new Empleados { IdEmpleados = 6, Nombre = "Eduardo Perez", Usuario = "eperez", Password = "password6", Estado = EEstadoEmpleado.Activo, Rol = ERoles.Admin }
             );
         }
     }
