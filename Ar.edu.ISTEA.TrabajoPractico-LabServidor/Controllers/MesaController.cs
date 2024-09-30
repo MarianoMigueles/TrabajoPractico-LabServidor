@@ -36,7 +36,7 @@ namespace Ar.edu.ISTEA.TrabajoPractico_LabServidor.Controllers
         }
 
         [Authorize(policy: "Admin")]
-        [HttpGet("ObtenerMesaPorId")]
+        [HttpGet("ObtenerMesaPorId{id}")]
         public async Task<ActionResult<MesaDTO>> ObtenerMesaPorId(int id)
         {
             var result = await _mesaService.ObtenerMesaPorId(id);
@@ -59,7 +59,7 @@ namespace Ar.edu.ISTEA.TrabajoPractico_LabServidor.Controllers
             return Ok(result);
         }
 
-        //[Authorize(policy: "Socio")]
+        [Authorize(policy: "Socio")]
         [HttpPatch("ObtenerMesas")]
         public async Task<ActionResult<List<MesaDTO>>> ObtenerMesas()
         {
