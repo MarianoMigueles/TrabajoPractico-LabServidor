@@ -19,5 +19,8 @@ namespace BLL.Services.Interface
         Task<List<PedidosDTO>> ObtenerPedidosPendientes();
         Task<bool> CrearPedido(int idComanda, int idProducto, int cantidad);
         Task<PedidosDTO> ConsultarEstadoPedido(int id);
+        Task<List<PedidosDTO>> ObtenerPedidosPendientesPorSector(ESectores sector);
+        Task<List<PedidosDTO>> ObtenerPedidosListosParaServir();
+        Task<List<PedidosDTO>> ObtenerPedidos();
     }
 }

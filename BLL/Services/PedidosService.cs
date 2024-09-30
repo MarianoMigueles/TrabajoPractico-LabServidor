@@ -66,5 +66,23 @@ namespace BLL.Services
             var result = await _unitOfWork.PedidosRepository.GetById(id);
             return _mapper.Map<PedidosDTO>(result);
         }
+
+        public async Task<List<PedidosDTO>> ObtenerPedidosPendientesPorSector(ESectores sector)
+        {
+            var result = await _unitOfWork.PedidosRepository.ObtenerPedidosPendientesPorSector(sector);
+            return _mapper.Map<List<PedidosDTO>>(result);
+        }
+
+        public async Task<List<PedidosDTO>> ObtenerPedidosListosParaServir()
+        {
+            var result = await _unitOfWork.PedidosRepository.ObtenerPedidosListosParaServir();
+            return _mapper.Map<List<PedidosDTO>>(result);
+        }
+
+        public async Task<List<PedidosDTO>> ObtenerPedidos()
+        {
+            var result = await _unitOfWork.PedidosRepository.GetAll();
+            return _mapper.Map<List<PedidosDTO>>(result);
+        }
     }
 }

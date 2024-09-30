@@ -42,5 +42,17 @@ namespace DAL.Repositorios
             var pedido = await _context.Pedidos.Where(x => x.EstadoPedido == EEstadoPedido.Pendiente).ToListAsync();
             return pedido;
         }
+
+        public async Task<List<Pedidos>> ObtenerPedidosPendientesPorSector(ESectores sector)
+        {
+            return await _context.Pedidos.Include(p => p.IdProductoNavigation)
+                .Where(x => x.EstadoPedido == EEstadoPedido.Pendiente && x.IdProductoNavigation.Sector == sector)
+                .ToListAsync();
+        }
+
+        public async Task<List<Pedidos>> ObtenerPedidosListosParaServir()
+        {
+            return await _context.Pedidos.Where(x => x.EstadoPedido == EEstadoPedido.ListoParaServir).ToListAsync();
+        }
     }
 }

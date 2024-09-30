@@ -65,5 +65,11 @@ namespace BLL.Services
             var result = await _unitOfWork.MesaRepository.GetById(id);
             return _mapper.Map<MesaDTO>(result);
         }
+
+        public async Task<List<MesaDTO>> ObtenerMesas()
+        {
+            var result = await _unitOfWork.MesaRepository.GetAll();
+            return _mapper.Map<List<MesaDTO>>(result);
+        }
     }
 }

@@ -12,5 +12,6 @@ namespace BLL.Services.Interface
         Task<bool> CrearComanda(int idMesa, string nombreCliente);
         Task<ComandaDTO> ObtenerComandaPorId(int id);
         Task<bool> EliminarComanda(int id);
+        Task<decimal?> CobrarComanda(int idComanda);
     }
 }

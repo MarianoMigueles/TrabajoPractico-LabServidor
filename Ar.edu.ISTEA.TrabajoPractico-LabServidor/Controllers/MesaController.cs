@@ -58,5 +58,13 @@ namespace Ar.edu.ISTEA.TrabajoPractico_LabServidor.Controllers
             var result = await _mesaService.CerrarMesa(idMesa);
             return Ok(result);
         }
+
+        //[Authorize(policy: "Socio")]
+        [HttpPatch("ObtenerMesas")]
+        public async Task<ActionResult<List<MesaDTO>>> ObtenerMesas()
+        {
+            var result = await _mesaService.ObtenerMesas();
+            return Ok(result);
+        }
     }
 }

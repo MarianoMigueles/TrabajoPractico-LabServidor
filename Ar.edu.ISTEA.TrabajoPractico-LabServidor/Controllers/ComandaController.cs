@@ -37,5 +37,13 @@ namespace Ar.edu.ISTEA.TrabajoPractico_LabServidor.Controllers
             var result = await _comandasService.ObtenerComandaPorId(id);
             return Ok(result);
         }
+
+        [Authorize(policy: "Mozos")]
+        [HttpGet("CobrarComanda")]
+        public async Task<ActionResult<ComandaDTO>> CobrarComanda(int idComanda)
+        {
+            var result = await _comandasService.CobrarComanda(idComanda);
+            return Ok(result);
+        }
     }
 }

@@ -14,5 +14,10 @@ namespace Entities
         public int IdMesa { get; set; }
         public Mesas Mesa { get; set; }
         public string NombreCliente { get; set; }
+
+        public virtual ICollection<Pedidos> Pedidos { get; set; } = new List<Pedidos>();
+
+        [NotMapped]
+        public decimal TotalComanda => Pedidos.Sum(p => p.IdProductoNavigation.Precio * p.Cantidad);
     }
 }

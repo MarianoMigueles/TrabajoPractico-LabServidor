@@ -70,5 +70,27 @@ namespace Ar.edu.ISTEA.TrabajoPractico_LabServidor.Controllers
             var result = await _pedidoService.ObtenerPedidosPendientes();
             return Ok(result);
         }
+
+        [HttpGet("ObtenerPedidosPendientesPorSector")]
+        public async Task<ActionResult<List<PedidosDTO>>> ObtenerPedidosPendientesPorSector(ESectores sector)
+        {
+            var result = await _pedidoService.ObtenerPedidosPendientesPorSector(sector);
+            return Ok(result);
+        }
+
+        [Authorize(policy: "Mozos")]
+        [HttpGet("ObtenerPedidosListosParaServir")]
+        public async Task<ActionResult<List<PedidosDTO>>> ObtenerPedidosListosParaServir()
+        {
+            var result = await _pedidoService.ObtenerPedidosListosParaServir();
+            return Ok(result);
+        }
+
+        [HttpGet("ObtenerPedidos")]
+        public async Task<ActionResult<List<PedidosDTO>>> ObtenerPedidos()
+        {
+            var result = await _pedidoService.ObtenerPedidos();
+            return Ok(result);
+        }
     }
 }

@@ -9,5 +9,6 @@ namespace DAL.Repositorios.Interfaces
 {
     public interface IComandasRepository : IRepository<Comandas>
     {
+        Task<Comandas> ObtenerComandaConPedidos(int idComanda);
     }
 }

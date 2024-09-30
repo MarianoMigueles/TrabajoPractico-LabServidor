@@ -14,6 +14,7 @@ namespace Entities.Enums
         EnPreparacion,
         ListoParaServir,
         Entregado,
-        EntregadoFueraDeTiempo
+        EntregadoFueraDeTiempo,
+        Pagado
     }
 }

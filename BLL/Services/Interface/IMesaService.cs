@@ -15,6 +15,7 @@ namespace BLL.Services.Interface
         Task<MesaDTO> CerrarMesa(int idMesa);
         Task<bool> CrearMesa(string nombreMesa);
         Task<MesaDTO> ObtenerMesaPorId(int id);
+        Task<List<MesaDTO>> ObtenerMesas();
         Task<bool> EliminarMesa(int id);
     }
 }

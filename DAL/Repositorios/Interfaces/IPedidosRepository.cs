@@ -15,5 +15,8 @@ namespace DAL.Repositorios.Interfaces
         Task<DateTime> ObtenerTiempoEstimadoPedidoDePreparacion(int idPedido);
         Task<Pedidos> PonerPedidoEnPreparacion(int idPedido, DateTime tiempoEstimado);
         Task<List<Pedidos>> ObtenerPedidosPendientes();
+        Task<List<Pedidos>> ObtenerPedidosPendientesPorSector(ESectores sector);
+        Task<List<Pedidos>> ObtenerPedidosListosParaServir();
+
     }
 }
