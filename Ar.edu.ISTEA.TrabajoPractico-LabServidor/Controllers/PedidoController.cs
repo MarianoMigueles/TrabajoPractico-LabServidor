@@ -50,6 +50,7 @@ namespace Ar.edu.ISTEA.TrabajoPractico_LabServidor.Controllers
             return Ok(result);
         }
 
+        [AllowAnonymous]
         [HttpGet("ObtenerTiempoEstimadoPedidoDePreparacion")]
         public async Task<ActionResult<DateTime>> ObtenerTiempoEstimadoPedidoDePreparacion(int idPedido)
         {

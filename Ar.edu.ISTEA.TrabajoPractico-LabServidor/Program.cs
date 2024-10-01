@@ -88,6 +88,7 @@ builder.Services.AddAuthorization(option =>
 {
     option.AddPolicy("Admin", policy => policy.RequireClaim("Rol", "Admin"));
     option.AddPolicy("Socio", policy => policy.RequireClaim("Rol", "Socio"));
+    option.AddPolicy("Mozos", policy => policy.RequireClaim("Rol", "Mozos"));
 });
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
