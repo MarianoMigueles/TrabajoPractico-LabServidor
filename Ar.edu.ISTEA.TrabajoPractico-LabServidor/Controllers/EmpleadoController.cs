@@ -55,7 +55,7 @@ namespace Ar.edu.ISTEA.TrabajoPractico_LabServidor.Controllers
                 return Ok(new JwtSecurityTokenHandler().WriteToken(token));
             }
             else
-                return BadRequest();
+                return Forbid();
         }
 
         [Authorize(policy: "Admin")]

@@ -39,7 +39,7 @@ namespace DAL.Repositorios
         public async Task<Empleados> LogInEmpleado(string userName, string password)
         {
             var user = await _context.Empleados.Where(x => x.Usuario == userName && x.Password == password).FirstOrDefaultAsync();
-            return user?? throw new EntityNotFoundException($"El nombre de usuario o la contraseña no son validos.");
+            return user?? throw new UnauthorizedAccessException($"El nombre de usuario o la contraseña no son validos.");
         }
 
         public async Task<List<LogInEmpleado>> ObtenerHorarioIngreso(int idEmpleado)
