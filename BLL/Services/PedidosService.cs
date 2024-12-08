@@ -46,7 +46,7 @@ namespace BLL.Services
             return _mapper.Map<List<PedidosDTO>>(result);
         }
 
-        public async Task<bool> CrearPedido(int idComanda, int idProducto, int cantidad)
+        public async Task<PedidosDTO> CrearPedido(int idComanda, int idProducto, int cantidad)
         {
             PedidoCreateRequestDTO pedido = new()
             {
@@ -56,9 +56,14 @@ namespace BLL.Services
             };
 
             var nuevoPedido = _mapper.Map<Pedidos>(pedido);
+
+            nuevoPedido.FechaCreacion = DateTime.Now;
+
             await _unitOfWork.PedidosRepository.Create(nuevoPedido);
             await _unitOfWork.Save();
-            return true;
+
+            var pedidoDto = _mapper.Map<PedidosDTO>(nuevoPedido);
+            return pedidoDto;
         }
 
         public async Task<PedidosDTO> ConsultarEstadoPedido(int id)

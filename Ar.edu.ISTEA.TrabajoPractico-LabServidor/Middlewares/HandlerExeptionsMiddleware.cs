@@ -68,7 +68,7 @@ namespace Ar.edu.ISTEA.TrabajoPractico_LabServidor.Middlewares
             {
                 StatusCode = context.Response.StatusCode,
                 Message = "Ocurrio un error mientras se procesaba su pedido.",
-                Detailed = exception.Message 
+                Detailed = exception.Message
             };
 
             return context.Response.WriteAsJsonAsync(response);

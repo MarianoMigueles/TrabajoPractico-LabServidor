@@ -22,7 +22,7 @@ namespace Ar.edu.ISTEA.TrabajoPractico_LabServidor.Controllers
 
         [Authorize(policy: "Mozos")]
         [HttpPost("CrearPedido")]
-        public async Task<ActionResult<bool>> CrearPedido(int idComanda, int idProducto, int cantidad)
+        public async Task<ActionResult<PedidosDTO>> CrearPedido(int idComanda, int idProducto, int cantidad)
         {
             var result = await _pedidoService.CrearPedido(idComanda, idProducto, cantidad);
             return Ok(result);
