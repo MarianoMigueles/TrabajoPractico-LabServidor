@@ -19,12 +19,6 @@ namespace Ar.edu.ISTEA.TrabajoPractico_LabServidor.Filters
         {
             var user = context.HttpContext.User;
 
-            if (!user.Identity.IsAuthenticated)
-            {
-                context.Result = new UnauthorizedResult();
-                return;
-            }
-
             var sectorClaim = user.Claims.FirstOrDefault(c => c.Type == "Sector")?.Value;
             if (string.IsNullOrEmpty(sectorClaim) || !Enum.TryParse<ESectores>(sectorClaim, ignoreCase: true, out var sectorUsuario))
             {

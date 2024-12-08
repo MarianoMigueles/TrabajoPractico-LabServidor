@@ -85,7 +85,6 @@ namespace Entities
                 this.TiempoEstimadoFinalizacion = tiempoEstimadoFinalizacion;
                 this.CambiarEstado(EEstadoPedido.EnPreparacion);
             }
-
         }
 
     }

@@ -2,6 +2,7 @@
 using DAL.Repositorios.Interfaces;
 using Entities;
 using Entities.Enums;
+using Exeptions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
 using System;
@@ -16,6 +17,11 @@ namespace DAL.Repositorios
     {
         public void CambiarEstado(Pedidos pedidos, EEstadoPedido estado)
         {
+            if (pedidos.EstadoPedido == EEstadoPedido.Pendiente)
+            {
+                throw new InvalidStateException("No se puede cambiar el estado de un pedido pendiente.");
+            }
+
             pedidos.CambiarEstado(estado);
         }
 
