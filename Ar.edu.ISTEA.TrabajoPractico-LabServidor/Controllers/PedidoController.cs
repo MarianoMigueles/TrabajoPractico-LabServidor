@@ -1,4 +1,5 @@
-﻿using BLL.DTO.Empleados;
+﻿using Ar.edu.ISTEA.TrabajoPractico_LabServidor.Filters;
+using BLL.DTO.Empleados;
 using BLL.DTO.Pedidos;
 using BLL.Services.Interface;
 using Entities;
@@ -35,7 +36,8 @@ namespace Ar.edu.ISTEA.TrabajoPractico_LabServidor.Controllers
             return Ok(result);
         }
 
-        [HttpPatch("CambiarEstado")]
+        [ServiceFilter(typeof(FiltroAutorizacionEmpleado))]
+        [HttpPatch("CambiarEstado/{idPedido}")]
         public async Task<ActionResult<PedidosDTO>> CambiarEstado(int idPedido, EEstadoPedido estado)
         {
             var result = await _pedidoService.CambiarEstado(idPedido, estado);
@@ -57,7 +59,7 @@ namespace Ar.edu.ISTEA.TrabajoPractico_LabServidor.Controllers
             var result = await _pedidoService.ObtenerTiempoEstimadoPedidoDePreparacion(idPedido);
             return Ok(result);
         }
-
+ 
         [HttpPatch("PonerPedidoEnPreparacion")]
         public async Task<ActionResult<PedidosDTO>> PonerPedidoEnPreparacion(int idPedido, DateTime tiempoEstimado)
         {

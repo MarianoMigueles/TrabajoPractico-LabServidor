@@ -1,5 +1,6 @@
 
 using Ar.edu.ISTEA.TrabajoPractico_LabServidor.Dal;
+using Ar.edu.ISTEA.TrabajoPractico_LabServidor.Filters;
 using Ar.edu.ISTEA.TrabajoPractico_LabServidor.Middlewares;
 using BLL.Automapper;
 using BLL.Services;
@@ -105,6 +106,8 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
     };
 });
 
+builder.Services.AddScoped<FiltroAutorizacionEmpleado>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -115,6 +118,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
 
 app.UseMiddleware<HandlerExeptionsMiddleware>();
 app.UseMiddleware<LogInMiddleware>();
