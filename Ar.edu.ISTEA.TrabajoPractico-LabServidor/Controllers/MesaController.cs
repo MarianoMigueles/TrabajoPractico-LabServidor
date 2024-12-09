@@ -60,7 +60,7 @@ namespace Ar.edu.ISTEA.TrabajoPractico_LabServidor.Controllers
         }
 
         [Authorize(policy: "Socios")]
-        [HttpPatch("ObtenerMesas")]
+        [HttpGet("ObtenerMesas")]
         public async Task<ActionResult<List<MesaDTO>>> ObtenerMesas()
         {
             var result = await _mesaService.ObtenerMesas();

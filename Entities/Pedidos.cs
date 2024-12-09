@@ -36,16 +36,19 @@ namespace Entities
             get => _estadoPedido;
             set
             {
-                if (_estadoPedido == EEstadoPedido.Entregado)
-                {
-                    throw new InvalidStateException("No se puede cambiar el estado, ya que el pedido ya fue entregado");
-                }
 
                 if(_estadoPedido == EEstadoPedido.Pagado)
                 {
                     throw new InvalidStateException("No se puede cambiar el estado, ya que el pedido ya fue entragado y pagado");
                 }
-                _estadoPedido = value; 
+
+
+                if (_estadoPedido == EEstadoPedido.Entregado && value != EEstadoPedido.Pagado)
+                {
+                    throw new InvalidStateException("No se puede cambiar el estado, ya que el pedido ya fue entregado");
+                }
+
+                _estadoPedido = value;
             }
         }
 
