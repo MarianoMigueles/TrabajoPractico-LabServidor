@@ -13,6 +13,8 @@ namespace Entities.Enums
         BarraDeTragosYVinos,
         BarraDeChoperas,
         Cocina,
-        CandyBar
+        CandyBar,
+        Mesas,
+        Administracion
     }
 }

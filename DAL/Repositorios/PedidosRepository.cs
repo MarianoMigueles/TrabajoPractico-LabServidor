@@ -34,6 +34,10 @@ namespace DAL.Repositorios
         public async Task<DateTime> ObtenerTiempoEstimadoPedidoDePreparacion(int idPedido)
         {
             var result = await this.GetById(idPedido);
+            if (result.TiempoEstimadoFinalizacion == null)
+            {
+                throw new InvalidOperationException("El pedido no se encuentra en preparacion");
+            }
             return (DateTime)result.TiempoEstimadoFinalizacion;
         }
 

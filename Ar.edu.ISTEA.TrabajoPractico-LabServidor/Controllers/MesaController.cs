@@ -51,7 +51,7 @@ namespace Ar.edu.ISTEA.TrabajoPractico_LabServidor.Controllers
             return Ok(result);
         }
 
-        [Authorize(policy: "Socio")]
+        [Authorize(policy: "Socios")]
         [HttpPatch("CerrarMesa")]
         public async Task<ActionResult<MesaDTO>> CerrarMesa(int idMesa)
         {
@@ -59,7 +59,7 @@ namespace Ar.edu.ISTEA.TrabajoPractico_LabServidor.Controllers
             return Ok(result);
         }
 
-        [Authorize(policy: "Socio")]
+        [Authorize(policy: "Socios")]
         [HttpPatch("ObtenerMesas")]
         public async Task<ActionResult<List<MesaDTO>>> ObtenerMesas()
         {

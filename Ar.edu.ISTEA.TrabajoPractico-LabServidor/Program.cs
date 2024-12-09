@@ -88,7 +88,7 @@ builder.Services.AddAutoMapper(typeof(AutomapperProfile));
 builder.Services.AddAuthorization(option =>
 {
     option.AddPolicy("Admin", policy => policy.RequireClaim("Rol", "Admin"));
-    option.AddPolicy("Socio", policy => policy.RequireClaim("Rol", "Socio"));
+    option.AddPolicy("Socios", policy => policy.RequireClaim("Rol", "Socios"));
     option.AddPolicy("Mozos", policy => policy.RequireClaim("Rol", "Mozos"));
 });
 

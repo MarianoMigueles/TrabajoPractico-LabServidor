@@ -59,8 +59,9 @@ namespace Ar.edu.ISTEA.TrabajoPractico_LabServidor.Controllers
             var result = await _pedidoService.ObtenerTiempoEstimadoPedidoDePreparacion(idPedido);
             return Ok(result);
         }
- 
-        [HttpPatch("PonerPedidoEnPreparacion")]
+
+        [ServiceFilter(typeof(FiltroAutorizacionEmpleado))]
+        [HttpPatch("PonerPedidoEnPreparacion/{idPedido}")]
         public async Task<ActionResult<PedidosDTO>> PonerPedidoEnPreparacion(int idPedido, DateTime tiempoEstimado)
         {
             var result = await _pedidoService.PonerPedidoEnPreparacion(idPedido, tiempoEstimado);

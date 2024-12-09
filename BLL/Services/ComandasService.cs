@@ -28,7 +28,14 @@ namespace BLL.Services
 
             foreach (var pedido in comanda.Pedidos)
             {
-                pedido.CambiarEstado(EEstadoPedido.Pagado);
+                if (pedido.EstadoPedido == EEstadoPedido.Entregado || pedido.EstadoPedido == EEstadoPedido.EntregadoFueraDeTiempo)
+                {
+                    pedido.CambiarEstado(EEstadoPedido.Pagado);
+                }
+                else
+                {
+                    throw new InvalidOperationException("El pedido aun no fue entregado");
+                }
             }
 
             await _unitOfWork.Save();
