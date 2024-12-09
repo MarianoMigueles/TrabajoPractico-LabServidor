@@ -40,10 +40,13 @@ namespace Ar.edu.ISTEA.TrabajoPractico_LabServidor.Filters
             var pedido = await pedidoService.GetById(pedidoId);
             var producto = await productoService.GetById(pedido.IdProducto);
 
-            var puedeCambiarEstado = PuedeCambiarEstado(sectorUsuario, producto.Sector);
-            if (!puedeCambiarEstado)
+            if(pedido.EstadoPedido != EEstadoPedido.ListoParaServir)
             {
-                throw new UnauthorizedAccessException("No se puede cambiar el estado del producto porque no pertenece al sector del usuario.");
+                var puedeCambiarEstado = PuedeCambiarEstado(sectorUsuario, producto.Sector);
+                if (!puedeCambiarEstado)
+                {
+                    throw new UnauthorizedAccessException("No se puede cambiar el estado del producto porque no pertenece al sector del usuario.");
+                }
             }
 
             await next();
